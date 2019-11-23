@@ -1,0 +1,6 @@
+Testing could probably be accomplished by throwing a combination
+of words with blanks, tabs, and newlines, and keeping track of what
+the expected output should look like. These are most likely to
+uncover bugs, as this is the kind of input that we are directly
+checking for inside our program (and thus logic errors will
+reveal themselves the most, etc. etc.)
