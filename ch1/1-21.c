@@ -12,7 +12,7 @@ main() {
     int len;
     while((len = get_line(input)) != 0) {
         //Note; this also prints
-        entab(input, len, 4);
+        entab(input, len, 5);
     }
 
 }
