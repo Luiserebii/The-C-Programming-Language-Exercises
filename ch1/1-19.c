@@ -4,6 +4,7 @@
 int get_line(char line[], int maxline);
 void copy(char to[], char from[]);
 void print(char c[], int size);
+void reverse(char c[], int size);
 
 main() {
 
@@ -13,10 +14,9 @@ main() {
     //Loop in loading a line (as char[]) into line (array passing is essentially by reference - what
     //is passed is the location/address of the beginning of the array)
     while ((len = get_line(line, MAXLINE)) > 0) {
-        //If the line is the longest, let's save it into longest
-        if (len > 80) {
-            print(line, len);
-        }
+        //Reverse
+        reverse(line, len);
+        print(line, len);
     }
     return 0;
 }
@@ -56,5 +56,16 @@ void copy(char to[], char from[]) {
 void print(char c[], int size) {
     for(int i = 0; i < size; ++i) {
         putchar(c[i]);
+    }
+}
+
+void reverse(char c[], int size) {
+    int temp;
+    //Decrement to account for '\0' null char
+    --size;
+    for(int i = 0; i < size/2; ++i) {
+        temp = c[i];
+        c[i] = c[size - i - 1];
+        c[size - i - 1] = temp;
     }
 }
