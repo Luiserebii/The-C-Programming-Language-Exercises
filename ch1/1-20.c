@@ -28,10 +28,11 @@ int get_line(char a[]) {
         ++i;
     }
 
-    line[i] = '\0';
+    a[i] = '\0';
     return i;
 }
 
+//n should be a symbolic parameter!
 void detab(char c[], int size, int spaces) {
     for(int i = 0; i < size; ++i) {
         if(c[i] == '\t') {
