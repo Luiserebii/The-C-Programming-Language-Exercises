@@ -20,13 +20,18 @@ main() {
                 //Swap between protected or not depending on whether we hit
                 //this a second time
                 inProtected == FALSE ? inProtected = TRUE : inProtected = FALSE ;
-            } else if(input[i] == "//" && inProtected == FALSE) {
-                //We hit a comment; stop printing
-                break;
-            } else if(input[i] == "/*" && inProtected == FALSE) {
-                canPrint = FALSE;
-            } else if(input[i] == "*/" && inProtected == FALSE) {
-                canPrint = TRUE;
+            } else if(input[i] == '/' && inProtected == FALSE) {
+                if(input[i + 1] == '/') {
+                    //We hit a comment; stop printing
+                    break;
+                } else if(input[i + 1] == '*') {
+                    ++i;
+                    canPrint = FALSE;
+                } 
+            } else if(input[i] == '*' && inProtected == FALSE) {
+                if(input[i + 1] == '/') {
+                    canPrint = TRUE;
+                }
             } else {
                 if(canPrint == TRUE) {
                     putchar(input[i]);
