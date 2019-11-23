@@ -14,12 +14,15 @@ main() {
     //Hold whether we are in string literal or not
     while((len = get_line(input)) != 0) {
         int inProtected = FALSE;
-        int canPrint = FALSE;
+        int canPrint = TRUE;
         for(int i = 0; i < len; ++i) {
             if(input[i] == '"') {
                 //Swap between protected or not depending on whether we hit
                 //this a second time
-                inProtected == FALSE ? inProtected = TRUE : inProtected = FALSE ;
+                inProtected = (inProtected == FALSE) ? TRUE : FALSE;
+                if(canPrint == TRUE) {
+                    putchar(input[i]);
+                }
             } else if(input[i] == '/' && inProtected == FALSE) {
                 if(input[i + 1] == '/') {
                     //We hit a comment; stop printing
