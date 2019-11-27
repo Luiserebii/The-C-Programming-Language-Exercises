@@ -1,5 +1,7 @@
 #include <string.h>
 
+void reverse(char s[]);
+
 //Reverse string s in place
 void reverse(char s[]) {
     int c, i, j;
