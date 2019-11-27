@@ -39,7 +39,7 @@ void expand(char s1[], char s2[]) {
                         //Write the next char to come
                         s2[j++] = ch;
                     }
-                    j--;
+                    --j;
                     //Increment i to skip over the limit char
                     ++i;
                 }
