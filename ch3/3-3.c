@@ -37,6 +37,7 @@ void expand(char s1[], char s2[]) {
                         s2[j++] = ch;
                     }
                     //Increment i to skip over the limit char
+                    printf("\ni: %c, i + 2: %c\n", s1[i], s1[i+2]);
                     i += 2;
                 }
             default:
