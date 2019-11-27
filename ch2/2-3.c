@@ -13,7 +13,9 @@ int prependedHex(char s[]);
 int main() {
     
     printf("Testing htoi(char[] s): \n\n");
-    printf("0x7DE: %d\n", htoi("0x7DE"));
+    printf("0x1AD19: %d (expecting 109849)\n", htoi("0x1AD19"));
+    printf("1AD19: %d (expecting 109849)\n", htoi("0x1AD19"));
+    printf("0x7DE: %d (expecting 2014)\n", htoi("0x7DE"));
 }
 
 /**
@@ -31,8 +33,8 @@ int htoi(char s[]) {
 
     //Finally, let's calculate the value
     int val = 0;
-    for(int i = start; i < length; ++i) {
-        val += hdtoi(s[i]) * pow(16, length - i - 1);
+    for(int i = 0; i < length; ++i) {
+        val += hdtoi(s[start + i]) * pow(16, length - i - 1);
     }
     return val;
 }
