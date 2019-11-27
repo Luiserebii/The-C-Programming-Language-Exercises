@@ -12,15 +12,19 @@ int main() {
     char b[] = "ole~";
 
     printf("a: %s\nb: %s\n", a, b);
+    printf("uguu");
     squeeze_alt(a, b);
-    printf("squeeze_alt(): %s\n", a);
+//    printf("squeeze_alt(): %s\n", a);
 
 }
 
 //Deletes each char in s1 that matches any char in s2
 void squeeze_alt(char s1[], char s2[]) {
+    putchar('g');
     int writepos;
+    printf("OwO");
     for(int i = 0, writepos = 0; s1[i] != '\0'; ++i) {
+        printf("i: %d", i);
         //If it doesn't match...
         if(!matches(s1[i], s2)) {
             //Write the non-matching char (what we want)
