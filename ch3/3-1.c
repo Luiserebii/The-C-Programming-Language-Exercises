@@ -15,16 +15,17 @@ int main() {
 
     //Time the first
     s1 = clock();
-    binsearch(search, arr, size);
+    int f = binsearch(search, arr, size);
     e1 = clock();
     printtime("binsearch: ", s1, e1);
+    printf("FOUND: %d\n", f);
 
     //Time the new
     s2 = clock();
-    binsearchnew(search, arr, size);
+    int fn = binsearchnew(search, arr, size);
     e2 = clock();
     printtime("binsearchnew: ", s2, e2);
-
+    printf("FOUND: %d\n", fn);
 }
 
 void printtime(char s[], clock_t start, clock_t end) {
@@ -36,15 +37,17 @@ int binsearchnew(int x, int v[], int n) {
 
     low = 0;
     high = n - 1;
-    while (low <= high) {
-        mid = (low + high) / 2;
+    mid = (low + high) / 2;
+    while (low <= high && x != v[mid]) {
         if (x < v[mid]) {
             high = mid - 1;
-        } else if (x > v[mid]) {
-            low = mid + 1;
         } else {
-            return mid; //Match found!
+            low = mid + 1;
         }
+        mid = (low + high) / 2;
+    }
+    if(x == v[mid]) {
+        return mid;
     }
     return -1; //No match found
 }
