@@ -11,6 +11,11 @@ int main() {
  
     while ((c = getchar()) != EOF) {
         switch (c) {
+            //Since cases are simply labels,
+            //things just fall-through; by sheer coincidence
+            //of the way functionality works, we can gather
+            //these cases together to imply that all of them lead
+            //to the same general block of code
             case '0': case '1': case '2': case '3': case '4':
             case '5': case '6': case '7': case '8': case '9':
                 ++ndigit[c - '0'];
