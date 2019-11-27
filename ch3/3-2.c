@@ -7,9 +7,9 @@ int main() {
 
     char a[] = "Uguu\nOwO\t\t\n";
     char b[1000];
-    printf("a: %s", a);
+    printf("a: %s\n", a);
     escape(b, a);
-    printf("escape: %s", a);
+    printf("escape: %s\n", b);
 }
 
 
@@ -18,7 +18,7 @@ void escape(char s[], char t[]) {
     //j is used to track our writing through s,
     //needed as we sometimes will be mapping a char
     //to multiple chars
-    for(int i = 0, int j = 0; i < len; ++i, ++j) {
+    for(int i = 0, j = 0; i < len; ++i, ++j) {
         switch (t[i]) {
             case '\n':
                 s[j++] = '\\';
