@@ -16,14 +16,18 @@ int main() {
     expand(a, b);
     printf("expand: %s\n", b);
 
+    for(int i = 0; i < 200; ++i) {
+        putchar(b[i]);
+    }
 }
 
 void expand(char s1[], char s2[]) {
     int size = strlen(s1);
     //We keep track of writing to s2 with j
     for(int i = 0, j = 0; i < size; ++i, ++j) {
-        switch (s1[i]) {
-            case '-':
+//        switch (s1[i]) {
+//            case '-':
+        if(s1[i] == '-') {
                 if(i == 0 || i == size - 1 || iswhitespace(s1[i - 1])) {
                     //Write regularly
                     s2[j] = s1[i];
@@ -37,12 +41,15 @@ void expand(char s1[], char s2[]) {
                         s2[j++] = ch;
                     }
                     //Increment i to skip over the limit char
-                    printf("\ni: %c, i + 2: %c\n", s1[i], s1[i+2]);
-                    i += 2;
+//                    printf("\ni: %c, i + 2: %c\n", s1[i], s1[i+2]);
+//                    i += 2;
+                    ++i;
                 }
-            default:
+        } else {
+//            default:
                 s2[j] = s1[i];
         }
+//        printf("|%c|", s1[i]);
     }
 
 }
