@@ -2,18 +2,18 @@
 #include <string.h>
 #include <math.h>
 
-#define TRUE 1;
-#define FALSE 0;
+#define TRUE 1
+#define FALSE 0
 
-int htoi(char[] s);
+int htoi(char s[]);
 int hdtoi(char c);
 int isHexDigit(char c);
-int prependedHex(char[] s);
+int prependedHex(char s[]);
 
 int main() {
     
     printf("Testing htoi(char[] s): \n\n");
-    printf("0x7DE: %d", htoi("0x7DE"));
+    printf("0x7DE: %d\n", htoi("0x7DE"));
 }
 
 /**
@@ -21,12 +21,12 @@ int main() {
  * is trimmed at the beginning, whitespace is not ignored; the only
  * thing done is ignoring non-hex chars at the end
  */
-int htoi(char[] s) {
+int htoi(char s[]) {
     //Obtain starting point, depending on whether is prepended
     int start = prependedHex(s) ? 2 : 0;
     //Get length of hex
     int length = 0;
-    for(int i = start; i < strlen(s) && isHexDigit(s[i]); ++i, ++len)
+    for(int i = start; i < strlen(s) && isHexDigit(s[i]); ++i, ++length)
         ;
 
     //Finally, let's calculate the value
@@ -53,6 +53,6 @@ int isHexDigit(char c) {
 }
 
 //Determines whether hex is prepended by "0x" or "0X" or not
-int prependedHex(char[] s) {
+int prependedHex(char s[]) {
     return s[0] == '0' && (s[1] == 'x' || s[1] == 'X');
 }
