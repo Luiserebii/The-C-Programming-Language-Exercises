@@ -40,16 +40,15 @@ void expand(char s1[], char s2[]) {
                         //Write the next char to come
                         s2[j++] = ch;
                     }
+                    j--;
                     //Increment i to skip over the limit char
-//                    printf("\ni: %c, i + 2: %c\n", s1[i], s1[i+2]);
-//                    i += 2;
                     ++i;
                 }
         } else {
 //            default:
                 s2[j] = s1[i];
         }
-//        printf("|%c|", s1[i]);
+        printf("|%c|", s1[i]);
     }
 
 }
