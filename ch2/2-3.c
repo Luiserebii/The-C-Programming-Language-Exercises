@@ -6,6 +6,7 @@
 #define FALSE 0;
 
 int htoi(char[] s);
+int hdtoi(char c);
 int isHexDigit(char c);
 int prependedHex(char[] s);
 
@@ -15,6 +16,11 @@ int main() {
     printf("0x7DE: %d", htoi("0x7DE"));
 }
 
+/**
+ * Converts hex char[] to int. Note that it is assumed the value
+ * is trimmed at the beginning, whitespace is not ignored; the only
+ * thing done is ignoring non-hex chars at the end
+ */
 int htoi(char[] s) {
     //Obtain starting point, depending on whether is prepended
     int start = prependedHex(s) ? 2 : 0;
@@ -29,6 +35,17 @@ int htoi(char[] s) {
         val += hdtoi(s[i]) * pow(16, length - i - 1);
     }
     return val;
+}
+
+//Converts single hex digit to integer
+int hdtoi(char c) {
+    if('0' <= c && c <= '9') {
+        return c - '0';
+    } else if('A' <= c && c <= 'F') {
+        return c - 'A' + 10;
+    } else if('a' <= c && c <= 'f') {
+        return c - 'a' + 10;
+    }
 }
 
 int isHexDigit(char c) {
