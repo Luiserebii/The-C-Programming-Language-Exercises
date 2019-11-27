@@ -35,11 +35,12 @@ void expand(char s1[], char s2[]) {
                     int lim = s1[i + 1];
                     //Loop through the char sequence, using the second as the limiter
                     //We can do this because of the way chars are aligned!
-                    for(int ch = s1[i - 1] + 1; ch <= lim; ++ch) {
+                    for(int ch = s1[i - 1] + 1; ch < lim; ++ch) {
                         //Write the next char to come
                         s2[j++] = ch;
                     }
-                    --j;
+                    //Write the limit character
+                    s2[j] = lim;
                     //Increment i to skip over the limit char
                     ++i;
                 }
