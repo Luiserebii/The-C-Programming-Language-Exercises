@@ -9,22 +9,26 @@ int main() {
     printf("Timing binary search implementations\n");
     clock_t s1, e1, s2, e2;
 
+    int arr[] = {0, 10, 15, 20, 30, 45, 55, 75, 80, 85, 95, 100};
+    int search = 15;
+    int size = 12;
+
     //Time the first
     s1 = clock();
-    binsearch();
+    binsearch(search, arr, size);
     e1 = clock();
     printtime("binsearch: ", s1, e1);
 
     //Time the new
     s2 = clock();
-    binsearchnew();
+    binsearchnew(search, arr, size);
     e2 = clock();
     printtime("binsearchnew: ", s2, e2);
 
 }
 
 void printtime(char s[], clock_t start, clock_t end) {
-    printf("%s %f sec", s, ((double) (end - start)) / CLOCKS_PER_SEC);
+    printf("%s %g ms\n", s, ((double) (end - start)) * 1000 / CLOCKS_PER_SEC);
 }
 
 int binsearchnew(int x, int v[], int n) {
