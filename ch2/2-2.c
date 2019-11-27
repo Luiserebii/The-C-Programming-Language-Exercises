@@ -14,23 +14,25 @@ main() {
     return 0;
 }
 
-//Read a line into the char[] passed, return length
 int get_line(char s[], int lim) {
 
     int c, i;
     
     //Loop in getting a char until we hit the limit, EOF, or a newline
-    for (i = 0; i < lim - 1 && (c = getchar()) != EOF && c != '\n'; ++i) {
-        //Append to char[]
+    for (i = 0; i < lim - 1; ++i) {
+        if((c = getchar()) == EOF) {
+            break;
+        }
+        if(c == '\n') {
+            break;
+        }
         s[i] = c;
     }
 
-    //If we hit a newline, add it
     if (c == '\n') {
         s[i] = c;
         ++i;
     }
-    //Add final piece to char array - a null character
     s[i] = '\0';
     return i;
 }
