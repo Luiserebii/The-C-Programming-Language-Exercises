@@ -24,3 +24,11 @@ void qsort(int v[], int left, int right) {
     qsort(v, left, last - 1);
     qsort(v, last + 1, right);
 }
+
+void swap(int v[], int i, int j) {
+    int temp;
+
+    temp = v[i];
+    v[i] = v[j];
+    v[j] = temp;
+}
