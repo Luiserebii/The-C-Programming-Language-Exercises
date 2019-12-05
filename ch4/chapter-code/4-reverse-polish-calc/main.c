@@ -14,9 +14,11 @@ int main() {
     double op2;
     char s[MAXOP];
 
+    //While we can get an operator
     while ((type = getop(s)) != EOF) {
         switch (type) {
             case NUMBER:
+                //Push numbers onto the stack
                 push(atof(s));
                 break;
             case '+':

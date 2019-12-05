@@ -5,10 +5,12 @@ char buf[BUFSIZE];
 int bufp;
 
 int getch(void) { //Get a (possibly pushed back) character
+    //If there are chars on the buffer, grab the latest on the buffer and decrement the size
     return (bufp > 0) ? buf[--bufp] : getchar();
 }
 
 void ungetch(int c) { // Push character back on input
+    //Depending on whether or not the buffer is full, place the gotten char back on
     if (bufp >= BUFSIZE) {
         printf("ungetch: too many characters");
     } else {
