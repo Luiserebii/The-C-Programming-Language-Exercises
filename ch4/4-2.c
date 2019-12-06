@@ -1,5 +1,17 @@
+#include <stdio.h>
 #include <ctype.h>
 #include <math.h>
+
+double atof(char s[]);
+
+int main() {
+    printf("Testing atof:\n");
+    char a[] = "123.45e-6";
+    char b[] = "12e4";
+
+    printf("%s: %f\n", a, atof(a));
+    printf("%s: %f\n", b, atof(b));
+}
 
 //atof: convert string s to double
 double atof(char s[]) {
