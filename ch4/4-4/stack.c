@@ -26,7 +26,7 @@ double pop(void) {
 // Return top of stack, no push
 double stacktop(void) {
     if (sp > 0) {
-        return val[sp];
+        return val[sp - 1];
     } else {
         printf("error: stack empty\n");
         return 0.0;
@@ -52,7 +52,7 @@ int stackswaptop(void) {
         val[sp - 2] = temp;
         return 1;
     } else {
-        printf("error: stack empty\n");
+        printf("error: stack does not have enough to swap. has only: %d\n", sp);
         return 0;
     }
 }

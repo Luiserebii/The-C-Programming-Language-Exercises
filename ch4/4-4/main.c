@@ -38,6 +38,7 @@ int main() {
             case 'C':
                 printf("Clearing the stack...\n");
                 stackclear();
+                getch();
                 break;
             case '+':
                 push(pop() + pop());
