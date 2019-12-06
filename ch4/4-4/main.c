@@ -30,6 +30,15 @@ int main() {
                 printf("Duplication of top of stack: %f\n", stackduptop());
                 getch();
                 break;
+            case 'S':
+                printf("Swapping top two of the stack\n");
+                stackswaptop();
+                getch();
+                break;
+            case 'C':
+                printf("Clearing the stack...\n");
+                stackclear();
+                break;
             case '+':
                 push(pop() + pop());
                 break;

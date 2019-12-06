@@ -44,6 +44,19 @@ double stackduptop(void) {
     }
 }
 
+// Swap top two, return depending on success
+int stackswaptop(void) {
+    if (sp > 1) {
+        int temp = val[sp - 1];
+        val[sp - 1] = val[sp - 2];
+        val[sp - 2] = temp;
+        return 1;
+    } else {
+        printf("error: stack empty\n");
+        return 0;
+    }
+}
+
 // Clear stack
 void stackclear(void) {
     //Arguably, we don't even have to hard-clear these
