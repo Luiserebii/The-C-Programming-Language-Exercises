@@ -1,1 +1,1 @@
-cc *.c && ./a.out
+cc *.c -lm && ./a.out
