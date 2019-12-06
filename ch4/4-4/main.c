@@ -22,10 +22,13 @@ int main() {
                 push(atof(s));
                 break;
             case 'T':
-                printf("Top of stack: %f", stacktop());
+                printf("Top of stack: %f\n", stacktop());
+                //Intended to skip past next character, expected to be a \n
+                getch();
                 break;
             case 'D':
-                printf("Duplication of top of stack: %f", stackduptop());
+                printf("Duplication of top of stack: %f\n", stackduptop());
+                getch();
                 break;
             case '+':
                 push(pop() + pop());
