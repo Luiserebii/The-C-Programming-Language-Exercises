@@ -4,6 +4,14 @@ int strrindex(char s[], char t);
 
 int main() {
     
+    char a[] = "Hello";
+    char b[] = "OwO";
+
+    printf("a: %s\nb: %s\n", a, b);
+    printf("strrindex(a, 'e'): %d\n", strrindex(a, 'e'));
+    printf("strrindex(a, 'o'): %d\n", strrindex(a, 'o'));
+    printf("strrindex(b, 'x'): %d\n", strrindex(b, 'x'));
+
 }
 
 int strrindex(char s[], char t) {
