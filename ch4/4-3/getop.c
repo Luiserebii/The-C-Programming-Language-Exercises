@@ -12,12 +12,12 @@ int getop(char s[]) {
     //Close string right after found character
     s[1] = '\0';
     //If it's an operator, return it
-    if (!isdigit(c) && c != '.') {
+    if (!isdigit(c) && c != '.' && c != '-') {
         return c;
     }
     i = 0;
-    //If it's a digit, overwrite s with all digits found
-    if (isdigit(c)) {
+    //If it's a digit, or a sign, overwrite s with all digits found afterwards
+    if (isdigit(c) || c == '-') {
         while (isdigit(s[++i] = c = getch()))
             ;
     }
