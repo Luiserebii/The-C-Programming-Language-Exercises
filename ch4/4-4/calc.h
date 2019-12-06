@@ -7,7 +7,7 @@ void push(double);
 double pop(void);
 double stacktop(void);
 double stackduptop(void);
-double stackclear(void);
+void stackclear(void);
 
 int getop(char []);
 int getch(void);

@@ -33,11 +33,11 @@ double stacktop(void) {
     }
 }
 
-// Duplicate top of stack
+// Duplicate top of stack, returns value duplicated
 double stackduptop(void) {
     if (sp > 0) {
         val[sp + 1] = val[sp];
-        ++sp;
+        return val[sp++];
     } else {
         printf("error: stack empty\n");
         return 0.0;
@@ -45,7 +45,7 @@ double stackduptop(void) {
 }
 
 // Clear stack
-double stackclear(void) {
+void stackclear(void) {
     //Arguably, we don't even have to hard-clear these
     //values, since sp tells us whether we have stuff or not
     for (int i = 0; i < sp; ++i) {

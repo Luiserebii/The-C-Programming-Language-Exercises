@@ -21,6 +21,12 @@ int main() {
                 //Push numbers onto the stack
                 push(atof(s));
                 break;
+            case 'T':
+                printf("Top of stack: %f", stacktop());
+                break;
+            case 'D':
+                printf("Duplication of top of stack: %f", stackduptop());
+                break;
             case '+':
                 push(pop() + pop());
                 break;
