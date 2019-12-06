@@ -15,7 +15,7 @@ int main() {
 }
 
 int strrindex(char s[], char t) {
-    for(int i = 0; i != '\0'; ++i) {
+    for(int i = 0; s[i] != '\0'; ++i) {
         if(s[i] == t) {
             return i;
         }
