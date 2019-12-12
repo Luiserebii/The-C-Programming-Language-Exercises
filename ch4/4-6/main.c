@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <limits.h>
 #include "calc.h"
 #include "varstack.h"
+
 
 #define MAXOP 100
 #define NUMBER '0'
@@ -20,7 +22,7 @@ int main() {
     double op1, op2;
     char s[MAXOP];
     //Holding variables here for usage
-    char vars[26];
+    double vars[CHAR_MAX];
 
     //While we can get an operator
     while ((type = getop(s)) != EOF) {
@@ -28,6 +30,18 @@ int main() {
             case NUMBER:
                 //Push numbers onto the stack
                 push(atof(s));
+                break;
+            case VARIABLE:
+                //Push variables onto the stack
+                pushVar(s[0]);
+                //Push the variable val onto the value stack
+                //This is done for convenience, so that we don't have some
+                //sort of "nextVal()" function we might wrap around pop()
+                //Minimizing complexity here
+                //
+                //NOTE: This will result in setting a garbage value on the
+                //first try
+                push(vars[s[0]]);
                 break;
             case 'T':
                 printf("Top of stack: %f\n", stacktop());
@@ -50,13 +64,9 @@ int main() {
                 break;
             case SETVAR:
                 printf("Setting a var...\n");
-                op2 = pop(), op1 = pop();
-                //Ensure char is valid
-                if(op1 < 'a' || op1 > 'z') {
-                    printf("Invalid char: %c", op1);
-                    break;
-                }
-                vars[op1] = op2;
+                vars[popVar()] = pop();
+                //Clearing the var value pushed onto the value stack
+                pop();
                 break;
             case SIN:
                 push(sin(pop()));

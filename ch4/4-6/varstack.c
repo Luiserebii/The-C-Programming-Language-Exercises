@@ -2,19 +2,19 @@
 #include "varstack.h"
 #define MAXVAL 100
 
-int sp = 0;
-char val[MAXVAL];
+static int sp = 0;
+static char val[MAXVAL];
 
-// push: push f onto value stack
-void pushVar(char f) {
+// pushVar: push c onto variable stack
+void pushVar(char c) {
     if (sp < MAXVAL) {
-        val[sp++] = f;
+        val[sp++] = c;
     } else {
-        printf("error: stack full, can't push %g\n", f);
+        printf("error: stack full, can't push %c\n", c);
     }
 }
 
-// pop: pop and return top value from stack
+// popVar: pop and return top value from stack
 char popVar(void) {
     if (sp > 0) {
         return val[--sp];

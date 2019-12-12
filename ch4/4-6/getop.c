@@ -18,7 +18,7 @@ int getop(char s[]) {
         return VARIABLE;
     }
     //If it's an operator, return it
-    if (!isdigit(c) && c != '.' && c != '-' &&) {
+    if (!isdigit(c) && c != '.' && c != '-') {
         return c;
     }
     i = 0;
@@ -42,5 +42,5 @@ int getop(char s[]) {
 }
 
 int isalphalower(char c) {
-    return 'a' =< c && c =< 'z';
+    return 'a' <= c && c <= 'z';
 }

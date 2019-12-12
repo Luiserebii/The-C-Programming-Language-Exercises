@@ -2,7 +2,7 @@
 #define CALC_H
 
 #define NUMBER '0'
-#define VARIABLE '='
+#define VARIABLE '1'
 
 void push(double);
 double pop(void);
