@@ -23,6 +23,26 @@ int main() {
 
 void itoa(int n, char s[]) {
 
+    int i = 0;
+    //Process sign
+    if (n < 0) {
+        n = -n;
+        s[i++] = '-';
+    }
+    if((n /= 10) = 0) {
+        return;
+    }
+    i = 0;
+    do {
+        s[i++] = n % 10 + '0';
+    } while ((n /= 10) > 0);
+    s[i] = '\0';
+    reverse(s);
+}
+
+/*
+void itoa(int n, char s[]) {
+
     int i, sign;
 
     if ((sign = n) < 0) {
@@ -38,7 +58,7 @@ void itoa(int n, char s[]) {
     s[i] = '\0';
     reverse(s);
 }
-
+*/
 //Reverse string s in place
 void reverse(char s[]) {
     int c, i, j;
