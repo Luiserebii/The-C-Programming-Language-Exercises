@@ -2,12 +2,14 @@
 #include <stdlib.h>
 #include <math.h>
 #include "calc.h"
+#include "varstack.h"
 
 #define MAXOP 100
 #define NUMBER '0'
 #define SIN '$'
 #define EXP '@'
 #define POW '^'
+#define SETVAR '='
 
 int getop(char []);
 void push(double);
@@ -46,9 +48,15 @@ int main() {
                 stackclear();
                 getch();
                 break;
-            case VARIABLE:
+            case SETVAR:
                 printf("Setting a var...\n");
-                vars[s[0]] = pop();
+                op2 = pop(), op1 = pop();
+                //Ensure char is valid
+                if(op1 < 'a' || op1 > 'z') {
+                    printf("Invalid char: %c", op1);
+                    break;
+                }
+                vars[op1] = op2;
                 break;
             case SIN:
                 push(sin(pop()));
