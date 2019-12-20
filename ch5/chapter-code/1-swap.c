@@ -13,12 +13,12 @@ int main() {
 }
 
 void swap(int* a, int* b) {
-    int* temp;
-    *temp = *a;
+    int temp;
+    temp = *a;
     *a = *b;
-    *b = *temp;
+    *b = temp;
 }
 
 void printInts(int a, int b) {
-    printf("a: %d    b: %d", a, b);
+    printf("a: %d    b: %d\n", a, b);
 }
