@@ -9,12 +9,13 @@ int main() {
     char* b = "uwu";
     char* c = "OwOuwu";
 
-/*    printf("a: %s   b: %s   c: %s\n", a, b, c);
-    printf("strend(a, b) [Expecting: 0]     Result: %d\n"), strend(a, b);
-    printf("strend(b, c) [Expecting: 1]     Result: %d\n"), strend(b, c);
-    printf("strlen(a, c) [Expecting: 0]     Result: %d\n"), strend(a, c);
-*/
-    strend(a, b);
+    printf("a: %s   b: %s   c: %s\n", a, b, c);
+    int m = strend(a,b);
+    printf("strend(a, b) [Expecting: 0]     Result: %d\n", strend(a, b));
+    printf("strend(b, c) [Expecting: 1]     Result: %d\n", strend(c, b));
+    printf("strlen(a, c) [Expecting: 0]     Result: %d\n", strend(a, c));
+
+//    printf("%d", strend(a, b));
 }
 
 int strend(char* s, char* t) {
