@@ -9,10 +9,12 @@ int main() {
     char* b = "uwu";
     char* c = "OwOuwu";
 
-    printf("a: %s   b: %s   c: %s\n", a, b, c);
+/*    printf("a: %s   b: %s   c: %s\n", a, b, c);
     printf("strend(a, b) [Expecting: 0]     Result: %d\n"), strend(a, b);
     printf("strend(b, c) [Expecting: 1]     Result: %d\n"), strend(b, c);
     printf("strlen(a, c) [Expecting: 0]     Result: %d\n"), strend(a, c);
+*/
+    strend(a, b);
 }
 
 int strend(char* s, char* t) {
@@ -22,10 +24,13 @@ int strend(char* s, char* t) {
         return 0;
     }
     //Advance s to place where t will fit
-    *s += lenS - lenT;
+    s += lenS - lenT;
     //While equal, advance
-    while(*s++ == *t++)
-        ;
+    while(*s++ == *t++) {
+        if(*s == '\0') {
+            break;
+        }
+    }
     //If we landed at the end, then great, we're equal;
     if(*s == '\0') {
         return 1;
