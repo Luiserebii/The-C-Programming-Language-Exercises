@@ -49,8 +49,8 @@ int getfloat(float *pn) {
     }
     //Process depending if next char is .
     if(c == '.') {
-        for(int level = 1; c = getch() && isdigit(c); ++level) {
-            *pn += (float) (c - '0') / pow(10, level);
+        for(int level = 1; c = getch(), isdigit(c); ++level) {
+            *pn += ((float) (c - '0')) / pow(10, level);
         }
     }
     *pn *= sign;
