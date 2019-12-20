@@ -8,6 +8,11 @@ int main() {
     char* a = "OwO";
     char* b = "uwu";
     char* c = "OwOuwu";
+
+    printf("a: %s   b: %s   c: %s\n", a, b, c);
+    printf("strend(a, b) [Expecting: 0]     Result: %d\n"), strend(a, b);
+    printf("strend(b, c) [Expecting: 1]     Result: %d\n"), strend(b, c);
+    printf("strlen(a, c) [Expecting: 0]     Result: %d\n"), strend(a, c);
 }
 
 int strend(char* s, char* t) {
