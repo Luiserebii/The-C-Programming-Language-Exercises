@@ -6,15 +6,15 @@ char* strncpy(char* s, char* ct, int n);
 
 int main() {
     
-    char a[1000];
-    char b* = "OwO, what's this?";
-    char c* = "c";
+    char a[1000] = "";
+    char* b = "OwO, what's this?";
+    char* c = "c";
 
-    printf("a: %s   b: %s", a, b);
+    printf("a: %s   b: %s\n", a, b);
     strncpy(a, b, 10);
-    printf("a: %s   b: %s", a, b);
+    printf("a: %s   b: %s\n", a, b);
     strncpy(a, c, 10);
-    printf("a: %s   b: %s", a, b);
+    printf("a: %s   c: %s\n", a, c);
 
 
 }
