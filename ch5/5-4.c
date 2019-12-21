@@ -29,16 +29,11 @@ int strend(char* s, char* t) {
     //While equal, advance
     while(*s++ == *t++) {
         if(*s == '\0') {
-            break;
+            return 1;
         }
     }
-    //If we landed at the end, then great, we're equal;
-    if(*s == '\0') {
-        return 1;
-    } else {
-        return 0;
-    }
-
+    //If we landed at the end, then not equal
+    return 0;
 
 }
 
