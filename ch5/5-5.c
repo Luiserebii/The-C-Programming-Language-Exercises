@@ -42,15 +42,15 @@ char* strncat(char* s, char* ct, int n) {
 
 int strncmp(char* cs, char* ct, int n) {
     //While the chars are equal and neither one is '\0'
-    for(int i = 0; i != n && *cs == *ct && *cs && *ct; ++i) {
+    for(int i = 0; i != n - 1 && *cs == *ct && *cs && *ct; ++i) {
         //We increment here, as we don't want to increment if
         //we did hit '\0'
         cs++, ct++;
         //Though, we can change order of && I bet and achieve same solution, test this
     }
     //We're at a char that can be compared, or both are equal
-    //Return the difference
-    return *ct - *cs;
+    //Return the difference, i.e. comparison of the nth char
+    return *cs - *ct;
 }
 
 
@@ -82,11 +82,11 @@ void teststrncat() {
 
 void teststrncmp() {
     printf("========\nTesting strncmp\n========\n");
-    char a* = "animal";
-    char b* = "animate";
+    char* a = "animal";
+    char* b = "animate";
 
     printf("a: %s   b: %s\n", a, b);
-    printf("strncmp(a, b, 10): %d", strncmp(a, b, 10));
-    printf("strncmp(a, b, 4): %d", strncmp(a, b, 4));
-
+    printf("strncmp(a, b, 10): %d\n", strncmp(a, b, 10));
+    printf("strncmp(a, b, 4): %d\n", strncmp(a, b, 4));
+    printf("strncmp(a, b, 5): %d\n", strncmp(a, b, 5));
 }
