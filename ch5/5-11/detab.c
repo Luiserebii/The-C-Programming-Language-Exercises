@@ -1,10 +1,12 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #define MAX_SIZE 1000
 
 int get_line(char a[]);
 void detab(char c[], int size, int spaces);
 void print(char c[], int size);
+void convert(int a[], char* s[], int size);
 
 main(int argc, char* argv[]) {
 
@@ -40,6 +42,14 @@ int get_line(char a[]) {
 
     a[i] = '\0';
     return i;
+}
+
+void convert(int a[], char* s[], int size) {
+    //Maybe doesn't matter, but this saves on a var
+    //(Contrast, vs. for loop)
+    while(size--) {
+        a[size] = atoi(s[size]);
+    }
 }
 
 //n should be a symbolic parameter!
