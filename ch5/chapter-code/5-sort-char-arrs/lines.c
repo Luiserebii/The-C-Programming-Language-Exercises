@@ -10,7 +10,7 @@ int readlines(char* lineptr[], int maxlines) {
 
     nlines = 0;
     //Reading each line into line
-    while((len = getline(line, MAXLEN)) > 0) {
+    while((len = getLine(line, MAXLEN)) > 0) {
         //If the number is lines are too high, or
         //we are unable to allocate more, quit
         if(nlines >= maxlines || (p = alloc(len)) == NULL) {
@@ -32,3 +32,18 @@ void writelines(char* lineptr[], int nlines) {
         printf("%s\n", lineptr[i]);
     }
 }
+
+int getLine(char s[], int lim) {
+    int c, i;
+
+    i = 0;
+    while (--lim > 0 && (c=getchar()) != EOF && c != '\n') {
+        s[i++] = c;
+    }
+    if (c == '\n') {
+        s[i++] = c;
+    }
+    s[i] = '\0';
+    return i;
+}
+

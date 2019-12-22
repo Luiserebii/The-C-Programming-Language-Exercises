@@ -22,6 +22,6 @@ char* alloc(int n) {
 //Free storage pponted to by p
 void afree(char* p) {
     if(p >= allocbuf && p < allocbuf + ALLOCSIZE) {
-        allocp = p
+        allocp = p;
     }
 }
