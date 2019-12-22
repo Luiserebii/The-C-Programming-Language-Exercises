@@ -6,10 +6,20 @@ int get_line(char a[]);
 void detab(char c[], int size, int spaces);
 void print(char c[], int size);
 
-main() {
+main(int argc, char* argv[]) {
 
     char input[MAX_SIZE];
     int len;
+
+    //If we have at least two args and the nearest one is a flag
+    if(argc-- > 1 && (++argv)[0] == '-') {
+        if(argv[1] == 'l') {
+            //Process logic to generate list
+            int list[MAX_SIZE];
+            convert(list, ++argv, --argc);
+        }
+    }
+
     while((len = get_line(input)) != 0) {
         //Note; this also prints
         detab(input, len, 4);

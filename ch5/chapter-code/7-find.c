@@ -13,6 +13,9 @@ int main(int argc, char* argv[]) {
     //While we have arguments (which leads with a flag)
     while(--argc > 0 && (*++argv)[0] == '-') {
         //For each flag arg we can find
+        //Note that this expression is different;
+        //this incrememnts argv[0], whereas the above
+        //increments argv
         while(c = *++argv[0]) {
             switch (c) {
                 case 'x':
@@ -30,13 +33,15 @@ int main(int argc, char* argv[]) {
         }
     }
 
-    //If we were passed no arguments (first one is filename)
+    //If we were passed no other arguments
     if(argc != 1) {
         printf("Usage: find -x -n pattern\n");
     } else {
         while(getLine(line, MAXLINE) > 0) {
             ++lineno;
+            //If the pattern passed (which is now at *argv) is found within line
             if((strstr(line, *argv) != NULL) != except) {
+                //If number flag is valid, print lineno found
                 if(number) {
                     printf("%ld:", lineno);
                 }
