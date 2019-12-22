@@ -1,4 +1,8 @@
 #include "lines.h"
+#include "alloc.h"
+
+#include <stdio.h>
+#include <string.h>
 
 int readlines(char* lineptr[], int maxlines) {
     int len, nlines;

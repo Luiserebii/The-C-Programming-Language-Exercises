@@ -1,3 +1,5 @@
+#include "alloc.h"
+
 #define ALLOCSIZE 10000
 
 static char allocbuf[ALLOCSIZE]; /* Storage for alloc */

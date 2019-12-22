@@ -1,14 +1,9 @@
 #include <stdio.h>
-#include <string.h>
+#include "lines.h"
 
 #define MAXLINES 5000
 
 char* lineptr[MAXLINES];
-
-int readlines(char* lineptr[], int nlines);
-void writeline(char* lineptr[], int nlines);
-
-void qsort(char* lineptr[], int left, int right);
 
 int main() {
     int nlines;
