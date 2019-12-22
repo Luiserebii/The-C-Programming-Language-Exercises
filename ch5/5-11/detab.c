@@ -85,6 +85,14 @@ void detab(char c[], int size, int tabstops[], int tsize) {
                 }
             }
             //If we didn't find one, then use the most exaggerated one
+            if(!tabs) {
+                tabs = tabstops[tsize - 1];
+            }
+            //Finally, print!
+            //tabs - i will represent the number of spaces we need to hit up to
+            for(int j = 0; j < tabs - i; ++j) {
+                putchar(' ');
+            }
         } else {
             putchar(c[i]);
         }
