@@ -5,8 +5,12 @@
 
 int get_line(char a[]);
 void detab(char c[], int size, int spaces);
-void print(char c[], int size);
+void detab(char c[], int size, int tabstops[], int tsize);
 void convert(int a[], char* s[], int size);
+
+// Utility functions
+void print(char c[], int size);
+void print(int c[], int size);
 
 main(int argc, char* argv[]) {
 
@@ -14,11 +18,16 @@ main(int argc, char* argv[]) {
     int len;
 
     //If we have at least two args and the nearest one is a flag
-    if(argc-- > 1 && (++argv)[0] == '-') {
-        if(argv[1] == 'l') {
+    if(argc-- > 1 && (*++argv)[0] == '-') {
+        if((*argv)[1] == 'l') {
             //Process logic to generate list
             int list[MAX_SIZE];
             convert(list, ++argv, --argc);
+            //Enter appropriate loop
+            while((len = get_line(input)) != 0) {
+                detab(input, len, list, argc);
+            }
+            return 0;
         }
     }
 
@@ -52,7 +61,6 @@ void convert(int a[], char* s[], int size) {
     }
 }
 
-//n should be a symbolic parameter!
 void detab(char c[], int size, int spaces) {
     for(int i = 0; i < size; ++i) {
         if(c[i] == '\t') {
@@ -65,8 +73,31 @@ void detab(char c[], int size, int spaces) {
     }
 }
 
+void detab(char c[], int size, int tabstops[], int tsize) {
+    for(int i = 0; i < size; ++i) {
+        if(c[i] == '\t') {
+            int tabs = 0;
+            //Obtain relevant tabstop
+            for(int j = 0; j < tsize; ++j) {
+                if(i > tabstops[j]) {
+                    tabs = j;
+                    break;
+                }
+            }
+            //If we didn't find one, then use the most exaggerated one
+        } else {
+            putchar(c[i]);
+        }
+    }
+}
+
 void print(char c[], int size) {
     for(int i = 0; i < size; ++i) {
         putchar(c[i]);
+    }
+}
+void print(int c[], int size) {
+    for(int i = 0; i < size; ++i) {
+         printf("%d",c[i]);
     }
 }
