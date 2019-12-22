@@ -74,13 +74,14 @@ void detab(char c[], int size, int spaces) {
 }
 
 void detab(char c[], int size, int tabstops[], int tsize) {
+    int written = 0;
     for(int i = 0; i < size; ++i) {
         if(c[i] == '\t') {
             int tabs = 0;
             //Obtain relevant tabstop
             for(int j = 0; j < tsize; ++j) {
-                if(i > tabstops[j]) {
-                    tabs = j;
+                if(written < tabstops[j]) {
+                    tabs = tabstops[j];
                     break;
                 }
             }
@@ -89,12 +90,16 @@ void detab(char c[], int size, int tabstops[], int tsize) {
                 tabs = tabstops[tsize - 1];
             }
             //Finally, print!
-            //tabs - i will represent the number of spaces we need to hit up to
-            for(int j = 0; j < tabs - i; ++j) {
+            //tabs - written will represent the number of spaces we need to hit up to
+            //printf("Using: tabs: %d, i: %d, diff: %d", tabs, written, tabs-written);
+            int toWrite = tabs - written;
+            for(int j = 0; j < toWrite; ++j) {
                 putchar(' ');
+                ++written;
             }
         } else {
             putchar(c[i]);
+            ++written;
         }
     }
 }
