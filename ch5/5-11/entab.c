@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #define MAX_SIZE 1000
+#define SPACES 5
 
 int get_line(char a[]);
 void entab(char c[], int size, int spaces);
@@ -86,8 +87,35 @@ void entab(char c[], int size, int spaces) {
 }
 
 void entab(char c[], int size, int tabstops[], int tsize) {
-    for(int i = 0; i < tsize; ++i) {
-        printf("STOP: %d\n", tabstops[i]);
+    int written = 0;
+    int numSpaces = 0;
+    for(int i = 0; i < size; ++i) {
+        if(c[i] == ' ') {
+            ++numSpaces;
+        } else {
+            //In the event we hit another char
+            if(numSpaces != 0) {
+                //Find number of tabstops that are appropriate
+                int tabs = 0;
+                //Recurse backwards to find largest tabstop
+                for(int tb = 0; tb < tsize; ++tb) {
+                    if(written + numSpaces < tabstops[tb]) {
+                        tabs = tabstops[tb];
+                    }
+                }
+                //In the event we don't find one, just set it to default largest
+                tabs = tabstops[tsize - 1];
+                //Finally, empty it all out
+                for(int t = 0; t < )
+                for(int sp = 0; sp < numSpaces; ++sp) {
+                    putchar(' ');
+                    ++written;
+                }
+                numSpaces = 0;
+            }
+            putchar(c[i]);
+            ++written;
+        }
     }
 }
 
