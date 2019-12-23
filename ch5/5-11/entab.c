@@ -104,13 +104,17 @@ void entab(char c[], int size, int tabstops[], int tsize) {
                     }
                 }
                 //In the event we don't find one, just set it to default largest
-                tabs = tabstops[tsize - 1];
+                if(!tabs) tabs = tabstops[tsize - 1];
                 //Finally, empty it all out
-                for(int t = 0; t < )
-                for(int sp = 0; sp < numSpaces; ++sp) {
+                int toWrite = tabs - written;
+                for(int sp = 0; sp < (toWrite % SPACES); ++sp) {
                     putchar(' ');
-                    ++written;
                 }
+                for(int tb = 0; tb < (toWrite/SPACES); ++tb) {
+                    putchar('\t');
+                }
+                //And finally, increment written as appropriate
+                written += toWrite;
                 numSpaces = 0;
             }
             putchar(c[i]);
