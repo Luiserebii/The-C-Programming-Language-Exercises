@@ -1,9 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define MAX_LINES 10000
+#define MAX_LEN 10000
 #define LINES_DEFAULT 10
 
 void tail(int lines);
+int getLine(char s[], int lim);
 
 int main(int argc, char* argv[]) {
     
@@ -24,5 +27,24 @@ int main(int argc, char* argv[]) {
 }
 
 void tail(int lines) {
-    printf("%d\n", lines);
+    char line[MAX_LEN];
+    while(getLine(line, MAX_LEN)) {
+        printf("LINE: %s | %d\n", line, lines);
+    }
+
 }
+
+int getLine(char s[], int lim) {
+    int c, i;
+
+    i = 0;
+    while (--lim > 0 && (c=getchar()) != EOF && c != '\n') {
+        s[i++] = c;
+    }
+    if (c == '\n') {
+        s[i++] = c;
+    }
+    s[i] = '\0';
+    return i;
+}
+
