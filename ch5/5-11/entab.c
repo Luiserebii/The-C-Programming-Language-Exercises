@@ -1,15 +1,35 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #define MAX_SIZE 1000
 
 int get_line(char a[]);
 void entab(char c[], int size, int spaces);
+void entab(char c[], int size, int tabstops[], int tsize);
+void convert(int a[], char* s[], int size);
+
 void print(char c[], int size);
 
-main() {
+main(int argc, char* argv[]) {
 
     char input[MAX_SIZE];
     int len;
+
+    //If we have at least two args and the nearest one is a flag
+    if(argc-- > 1 && (*++argv)[0] == '-') {
+        if((*argv)[1] == 'l') {
+            //Process logic to generate list
+            int list[MAX_SIZE];
+            convert(list, ++argv, --argc);
+            //Enter appropriate loop
+
+            while((len = get_line(input)) != 0) {
+                entab(input, len, list, argc);
+            }
+            return 0;
+        }
+    }
+
     while((len = get_line(input)) != 0) {
         //Note; this also prints
         entab(input, len, 5);
@@ -30,6 +50,14 @@ int get_line(char a[]) {
 
     a[i] = '\0';
     return i;
+}
+
+void convert(int a[], char* s[], int size) {
+    //Maybe doesn't matter, but this saves on a var
+    //(Contrast, vs. for loop)
+    while(size--) {
+        a[size] = atoi(s[size]);
+    }
 }
 
 void entab(char c[], int size, int spaces) {
@@ -54,6 +82,12 @@ void entab(char c[], int size, int spaces) {
             }
             putchar(c[i]);
         }
+    }
+}
+
+void entab(char c[], int size, int tabstops[], int tsize) {
+    for(int i = 0; i < tsize; ++i) {
+        printf("STOP: %d\n", tabstops[i]);
     }
 }
 
