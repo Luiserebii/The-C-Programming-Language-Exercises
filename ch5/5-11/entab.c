@@ -6,7 +6,7 @@
 
 int get_line(char a[]);
 void entab(char c[], int size, int spaces);
-void entab(char c[], int size, int tabstops[], int tsize);
+void entab_tbs(char c[], int size, int tabstops[], int tsize);
 void convert(int a[], char* s[], int size);
 
 void print(char c[], int size);
@@ -25,7 +25,7 @@ main(int argc, char* argv[]) {
             //Enter appropriate loop
 
             while((len = get_line(input)) != 0) {
-                entab(input, len, list, argc);
+                entab_tbs(input, len, list, argc);
             }
             return 0;
         }
@@ -86,7 +86,7 @@ void entab(char c[], int size, int spaces) {
     }
 }
 
-void entab(char c[], int size, int tabstops[], int tsize) {
+void entab_tbs(char c[], int size, int tabstops[], int tsize) {
     int written = 0;
     int numSpaces = 0;
     for(int i = 0; i < size; ++i) {

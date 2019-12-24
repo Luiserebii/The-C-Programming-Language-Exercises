@@ -5,12 +5,12 @@
 
 int get_line(char a[]);
 void detab(char c[], int size, int spaces);
-void detab(char c[], int size, int tabstops[], int tsize);
+void detab_tbs(char c[], int size, int tabstops[], int tsize);
 void convert(int a[], char* s[], int size);
 
 // Utility functions
-void print(char c[], int size);
-void print(int c[], int size);
+void print_char(char c[], int size);
+void print_int(int c[], int size);
 
 main(int argc, char* argv[]) {
 
@@ -25,7 +25,7 @@ main(int argc, char* argv[]) {
             convert(list, ++argv, --argc);
             //Enter appropriate loop
             while((len = get_line(input)) != 0) {
-                detab(input, len, list, argc);
+                detab_tbs(input, len, list, argc);
             }
             return 0;
         }
@@ -73,7 +73,7 @@ void detab(char c[], int size, int spaces) {
     }
 }
 
-void detab(char c[], int size, int tabstops[], int tsize) {
+void detab_tbs(char c[], int size, int tabstops[], int tsize) {
     int written = 0;
     for(int i = 0; i < size; ++i) {
         if(c[i] == '\t') {
@@ -104,12 +104,12 @@ void detab(char c[], int size, int tabstops[], int tsize) {
     }
 }
 
-void print(char c[], int size) {
+void print_char(char c[], int size) {
     for(int i = 0; i < size; ++i) {
         putchar(c[i]);
     }
 }
-void print(int c[], int size) {
+void print_int(int c[], int size) {
     for(int i = 0; i < size; ++i) {
          printf("%d",c[i]);
     }
