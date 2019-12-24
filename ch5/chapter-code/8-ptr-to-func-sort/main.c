@@ -20,7 +20,7 @@ int main(int argc, char* argv[]) {
     }
 
     if((nlines = readlines(lineptr, MAXLINES)) >= 0) {
-        qsort((void**) lineptr, 0, nlines - 1, 
+        q_sort((void**) lineptr, 0, nlines - 1, 
                 (int (*)(void*, void*))(numeric ? numcmp : str_cmp));
         writelines(lineptr, nlines);
         return 0;

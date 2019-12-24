@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 // qsort: sort v[left]...v[right] into increasing order
-void qsort(void* v[], int left, int right,
+void q_sort(void* v[], int left, int right,
            int (*comp)(void*, void*)) {
 
     int i, last;
@@ -22,8 +22,8 @@ void qsort(void* v[], int left, int right,
     }
     //Retore partition element
     swap(v, left, last);
-    qsort(v, left, last - 1, comp);
-    qsort(v, last + 1, right, comp);
+    q_sort(v, left, last - 1, comp);
+    q_sort(v, last + 1, right, comp);
 }
 
 void swap(void* v[], int i, int j) {

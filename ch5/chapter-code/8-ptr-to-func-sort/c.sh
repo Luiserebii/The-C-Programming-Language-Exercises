@@ -1,2 +1,2 @@
 #!/bin/bash
-gcc *.c && ./a.out
+cc *.c && ./a.out
