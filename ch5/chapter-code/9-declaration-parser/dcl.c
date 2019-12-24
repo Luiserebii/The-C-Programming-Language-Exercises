@@ -3,6 +3,7 @@
 #include <ctype.h>
 
 #include "dcl.h"
+#include "getch.h"
 
 #define MAXTOKEN 100
 

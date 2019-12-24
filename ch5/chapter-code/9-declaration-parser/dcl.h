@@ -3,6 +3,6 @@
 
 void dcl();
 void dirdcl();
-void gettoken();
+int gettoken();
 
 #endif
