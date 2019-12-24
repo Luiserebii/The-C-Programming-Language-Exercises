@@ -1,2 +1,2 @@
 #!/bin/bash
-cc *.c && ./a.out
+cc $1 getch.c && ./a.out
