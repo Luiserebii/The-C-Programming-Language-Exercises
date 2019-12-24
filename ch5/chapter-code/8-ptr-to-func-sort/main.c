@@ -1,27 +1,27 @@
 #include <stdio.h>
 #include <string.h>
-#include "lines.c"
-#include "sort.c"
+#include "lines.h"
+#include "sort.h"
 
 #define MAXLINES 5000
 
 char* lineptr[MAXLINES];
 
-void sort(void* lineptr[], int left, int right, int (*comp)(void*, void*));
-int numcmp(char*, char*);
+//void sort(void* lineptr[], int left, int right, int (*comp)(void*, void*));
+//int numcmp(char*, char*);
 
 /* Sort input lines */
 int main(int argc, char* argv[]) {
     int nlines;
     int numeric = 0;
 
-    if(argc > 1 && strcmp(argv[1], "-n") == 0) {
+    if(argc > 1 && str_cmp(argv[1], "-n") == 0) {
         numeric = 1;  
     }
 
     if((nlines = readlines(lineptr, MAXLINES)) >= 0) {
         qsort((void**) lineptr, 0, nlines - 1, 
-                (int (*)(void*, void*))(numeric ? numcmp : strcmp));
+                (int (*)(void*, void*))(numeric ? numcmp : str_cmp));
         writelines(lineptr, nlines);
         return 0;
     } else {

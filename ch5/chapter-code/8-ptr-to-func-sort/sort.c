@@ -1,5 +1,6 @@
 #include "sort.h"
 #include <string.h>
+#include <stdlib.h>
 
 // qsort: sort v[left]...v[right] into increasing order
 void qsort(void* v[], int left, int right,
@@ -33,3 +34,25 @@ void swap(void* v[], int i, int j) {
     v[j] = temp;
 }
 
+int str_cmp(char* s, char* t) {
+    for(; *s == *t; ++s, ++t) {
+        if(*s == '\0') {
+            return 0;
+        }
+    }
+    return *s - *t;
+}
+
+int numcmp(char* s1, char* s2) {
+    double v1, v2;
+
+    v1 = atof(s1);
+    v2 = atof(s2);
+    if(v1 < v2) {
+        return -1;
+    } else if(v1 > v2) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
