@@ -28,11 +28,17 @@ int main(int argc, char* argv[]) {
 }
 
 void tail(int lines) {
+    //Silently set to max lines, if over
+    if(lines > MAX_LINES) {
+        lines = MAX_LINES;
+    }
     char line[MAX_LEN];
     while(getLine(line, MAX_LEN)) {
         printf("LINE: %s | %d\n", line, lines);
+        buffer_push(line);
     }
-
+    //Print according to number of lines requested
+    buffer_print(lines);
 }
 
 int getLine(char s[], int lim) {
