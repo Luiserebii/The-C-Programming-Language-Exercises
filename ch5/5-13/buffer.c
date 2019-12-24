@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <string.h>
-#include"buffer.h"
+#include "buffer.h"
 
 char* lines[MAX_LINES];
 
 //Pointer to current piece of buffer
-static char* buffer_curr = lines;
-static char* buffer_end = lines[MAX_LINES] + 1;
+char** buffer_curr = lines;
+char** buffer_end = lines + 1;
 
 void buffer_push(char* line) {
     if(buffer_curr == buffer_end) {
@@ -15,6 +15,5 @@ void buffer_push(char* line) {
     }
 
     //Copy in, and advance buffer_curr
-    strcpy(buffer_curr++, line);
+    strcpy(*buffer_curr++, line);
 }
-
