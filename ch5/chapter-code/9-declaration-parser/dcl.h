@@ -5,6 +5,4 @@ void dcl();
 void dirdcl();
 void gettoken();
 
-extern 
-
 #endif
