@@ -2,7 +2,9 @@
 #define BUFFER_H
 
 #define MAX_LINES 50
-extern char* buffer_str[MAX_LINES];
+#define MAX_LEN 1000
+
+extern char buffer_str[MAX_LEN][MAX_LINES];
 extern char** buffer_curr;
 extern char** buffer_end;
 

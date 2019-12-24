@@ -2,11 +2,11 @@
 #include <string.h>
 #include "buffer.h"
 
-char* buffer_str[MAX_LINES];
+char buffer_str[MAX_LEN][MAX_LINES];
 
 //Pointer to current piece of buffer
 char** buffer_curr = buffer_str;
-char** buffer_end = buffer_str + 1;
+char** buffer_end = buffer_str + MAX_LINES;
 
 void buffer_push(char* line) {
     if(buffer_curr == buffer_end) {
