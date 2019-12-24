@@ -33,10 +33,11 @@ void tail(int lines) {
         lines = MAX_LINES;
     }
     char line[MAX_LEN];
-    while(getLine(line, MAX_LEN)) {
+/*    while(getLine(line, MAX_LEN)) {
         printf("LINE: %s | %d\n", line, lines);
         buffer_push(line);
-    }
+    }*/
+    buffer_push("Hello");
     //Print according to number of lines requested
     buffer_print(lines);
 }
