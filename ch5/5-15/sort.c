@@ -20,10 +20,19 @@ void q_sort(void* v[], int left, int right,
     for (i = left + 1; i <= right; ++i) {
         //If we're folding, compare the lowercase version
         if(fold) {
-            char* lowerI = tolowerstr(v[i]);
-            char* lowerLeft = tolowerstr(v[left]);
+            //Allocate memory (statically) because we need a temp
+            //place for our lowercase to compare
+            char lowerI[strlen((char*) v[i]) + 1];
+            char lowerLeft[strlen((char*) v[left]) + 1];
 
-            if((*comp)((void*) tolowerstr(v[i]), (void*) tolowerstr(v[left])) < 0) {
+            //Copy and lowercase
+            strcpy(lowerI, (char*) v[i]);
+            strcpy(lowerLeft, (char*) v[left]);
+            tolowerstr(lowerI);
+            tolowerstr(lowerLeft);
+
+            //Finally, process swap logic
+            if((*comp)((void*) lowerI, (void*) lowerLeft) < 0) {
                 swap(v, ++last, i);
             }
         } else {
@@ -69,4 +78,9 @@ int numcmp(char* s1, char* s2) {
     }
 }
 
-
+void tolowerstr(char* s) {
+    while(*s) {
+        *s = tolower(*s);
+        ++s;
+    }
+}
