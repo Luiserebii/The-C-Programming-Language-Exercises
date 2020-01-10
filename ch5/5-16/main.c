@@ -17,6 +17,7 @@ int main(int argc, char* argv[]) {
     int numeric = 0;
     int reverse = 0;
     int fold = 0;
+    int dirorder = 0;
 
     //Process all memes
     while(--argc){
@@ -26,12 +27,14 @@ int main(int argc, char* argv[]) {
             reverse = 1;
         } else if(str_cmp(argv[argc], "-f") == 0) {
             fold = 1;
+        } else if(str_cmp(argv[argc], "-d") == 0) {
+            dirorder = 1;
         }
     }
 
     if((nlines = readlines(lineptr, MAXLINES)) >= 0) {
         q_sort((void**) lineptr, 0, nlines - 1, 
-                (int (*)(void*, void*))(numeric ? numcmp : str_cmp), fold);
+                (int (*)(void*, void*))(numeric ? numcmp : str_cmp), fold, dirorder);
         //This is a lazy solution; reverse after the sort has happened
         if(reverse) {
             for(int i = 0; i < nlines/2; ++i) {
@@ -44,4 +47,5 @@ int main(int argc, char* argv[]) {
         printf("input too big to sort\n");
         return 1;
     }
+        }
 }

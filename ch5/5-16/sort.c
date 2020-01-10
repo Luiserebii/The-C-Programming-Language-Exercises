@@ -6,7 +6,7 @@
 
 // qsort: sort v[left]...v[right] into increasing order
 void q_sort(void* v[], int left, int right,
-           int (*comp)(void*, void*), int fold) {
+           int (*comp)(void*, void*), int fold, int dirorder) {
 
     int i, last;
     //If arr contains less than two elements, return
