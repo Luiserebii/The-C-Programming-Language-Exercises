@@ -1,4 +1,6 @@
 #include "rect.h"
+#include "point.h"
+#include <stdio.h>
 
 #define min(a, b) ((a) < (b) ? (a) : (b))
 #define max(a, b) ((a) > (b) ? (a) : (b))
@@ -15,4 +17,11 @@ struct rect canonrect(struct rect r) {
     temp.pt1.y = min(r.pt1.y, r.pt2.y);
     temp.pt2.x = max(r.pt1.x, r.pt2.x);
     temp.pt2.y = max(r.pt1.y, r.pt2.y);
+}
+
+void printrect(struct rect r) {
+    printf("\nPrinting rect:\n==================\n\n");
+    printpoint(r.pt1);
+    printpoint(r.pt2);
+    putchar('\n');
 }

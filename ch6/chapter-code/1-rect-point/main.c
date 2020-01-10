@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 #include "point.h"
+#include "rect.h"
 
 int main() {
     
@@ -14,5 +15,11 @@ int main() {
 
     //Print the sum of the points
     printpoint(addpoint(p1, p2));
-    
+
+    //Test creating a rect (using intializer list)
+    struct rect r1 = { p1, p2 };
+
+    //Print rect
+    printrect(r1);
+
 }
