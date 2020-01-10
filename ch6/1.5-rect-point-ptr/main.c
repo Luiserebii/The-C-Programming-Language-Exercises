@@ -12,10 +12,22 @@ int main() {
     //Attempt printing points
     printpoint(&p1);
     printpoint(&p2);
-/*
-    //Print the sum of the points
-    printpoint(addpoint(p1, p2));
 
+    //Print the sum of the points
+    struct point sum = addpoint(&p1, &p2);
+    printpoint(&sum);
+    
+    /**
+     * Note that this line below will not work, as we get:
+     *
+     * main.c: In function ‘main’:
+     * main.c:19:16: error: lvalue required as unary ‘&’ operand
+     *      printpoint(&(addpoint(&p1, &p2)));
+     *                      ^
+     **/
+    //printpoint(&(addpoint(&p1, &p2)));
+
+/*
     //Test creating a rect (using intializer list)
     struct rect r1 = { p1, p2 };
 
