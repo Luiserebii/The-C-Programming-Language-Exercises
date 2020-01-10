@@ -1,6 +1,7 @@
 #include "sort.h"
 #include <string.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 // qsort: sort v[left]...v[right] into increasing order
 void q_sort(void* v[], int left, int right,
@@ -18,7 +19,7 @@ void q_sort(void* v[], int left, int right,
     for (i = left + 1; i <= right; ++i) {
         //If we're folding, compare the lowercase version
         if(fold) {
-            if((*comp)(tolower(v[i]), tolower(v[left])) < 0) {
+            if((*comp)((void*) tolower((int) v[i]), (void*) tolower((int) v[left])) < 0) {
                 swap(v, ++last, i);
             }
         } else {
