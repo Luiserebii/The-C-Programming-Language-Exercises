@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <stdio.h>
 
 // qsort: sort v[left]...v[right] into increasing order
 void q_sort(void* v[], int left, int right,
@@ -19,9 +20,21 @@ void q_sort(void* v[], int left, int right,
     for (i = left + 1; i <= right; ++i) {
         //If we're folding, compare the lowercase version
         if(fold) {
-            if((*comp)((void*) tolower((int) v[i]), (void*) tolower((int) v[left])) < 0) {
+            printf("FOLD COMPARE BREAKDOWN: \n=========================\n");
+            int c1 = (int) v[i];
+            int c2 = (int) v[left];
+            printf("CHAR1: %c\nCHAR2: %c\n", c1, c2);
+            c1 = tolower(c1);
+            c2 = tolower(c2);
+            printf("TOLOWER_CHAR1: %c\nTOLOWER_CHAR2: %c\n", c1, c2);
+
+            if((*comp)((void*) c1, (void*) c2) < 0) {
                 swap(v, ++last, i);
             }
+            /*
+            if((*comp)((void*) tolower((int) v[i]), (void*) tolower((int) v[left])) < 0) {
+                swap(v, ++last, i);
+            }*/
         } else {
             if((*comp)(v[i], v[left]) < 0) {
                 swap(v, ++last, i);
