@@ -20,7 +20,7 @@ void q_sort(void* v[], int left, int right,
             swap(v, ++last, i);
         }
     }
-    //Retore partition element
+    //Restore partition element
     swap(v, left, last);
     q_sort(v, left, last - 1, comp);
     q_sort(v, last + 1, right, comp);

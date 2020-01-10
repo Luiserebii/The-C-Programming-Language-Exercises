@@ -28,6 +28,12 @@ int main(int argc, char* argv[]) {
     if((nlines = readlines(lineptr, MAXLINES)) >= 0) {
         q_sort((void**) lineptr, 0, nlines - 1, 
                 (int (*)(void*, void*))(numeric ? numcmp : str_cmp));
+        //This is a lazy solution; reverse after the sort has happened
+        if(reverse) {
+            for(int i = 0; i < nlines/2; ++i) {
+                swap((void**) lineptr, i, nlines - 1 - i);
+            }
+        }
         writelines(lineptr, nlines);
         return 0;
     } else {
