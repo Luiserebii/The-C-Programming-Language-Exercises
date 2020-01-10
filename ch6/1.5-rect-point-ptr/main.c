@@ -10,9 +10,9 @@ int main() {
     struct point p2 = makepoint(20, 100);
 
     //Attempt printing points
-    printpoint(p1);
-    printpoint(p2);
-
+    printpoint(&p1);
+    printpoint(&p2);
+/*
     //Print the sum of the points
     printpoint(addpoint(p1, p2));
 
@@ -25,4 +25,4 @@ int main() {
     printf("Is (0,0) in r1? | %d\n", ptinrect(makepoint(0, 0), r1));
     printf("Is (15,50) in r1? | %d\n", ptinrect(makepoint(15, 50), r1));
     printf("Is (50,50) in r1? | %d\n", ptinrect(makepoint(50, 50), r1));
-}
+*/}

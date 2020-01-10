@@ -10,15 +10,16 @@ struct point makepoint(int x, int y) {
 }
 
 //Return sum of points
-struct point addpoint(struct point p1, struct point p2) {
-    p1.x += p2.x;
-    p1.y += p2.y;
-    return p1;
+struct point addpoint(struct point* p1, struct point* p2) {
+    struct point sum;
+    sum.x = p1->x + p2->x;
+    sum.y = p1->y + p2->y;
+    return sum;
 }
 
 //Print point to console
-void printpoint(struct point p) {
+void printpoint(struct point* p) {
     printf("Printing a point:\n=====================\n");
-    printf("x: %d\n", p.x);
-    printf("y: %d\n", p.y);
+    printf("x: %d\n", p->x);
+    printf("y: %d\n", p->y);
 }
