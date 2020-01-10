@@ -15,10 +15,8 @@ void q_sort(void* v[], int left, int right,
     swap(v, left, (left + right)/2);
     last = left;
     //Partition
-    for (i = left + 1; i <= right; ++i) {
-        if((*comp)(v[i], v[left]) < 0) {
-            swap(v, ++last, i);
-        }
+    if((*comp)(v[i], v[left]) < 0) {
+        swap(v, ++last, i);
     }
     //Restore partition element
     swap(v, left, last);
