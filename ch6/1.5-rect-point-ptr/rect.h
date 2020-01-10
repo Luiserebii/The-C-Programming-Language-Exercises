@@ -8,8 +8,8 @@ struct rect {
     struct point pt2;
 };
 
-int ptinrect(struct point p, struct rect r);
-struct rect canonrect(struct rect r);
-void printrect(struct rect r);
+int ptinrect(struct point* p, struct rect* r);
+struct rect canonrect(struct rect* r);
+void printrect(struct rect* r);
 
 #endif

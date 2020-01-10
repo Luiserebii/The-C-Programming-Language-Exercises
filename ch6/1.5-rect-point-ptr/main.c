@@ -27,14 +27,14 @@ int main() {
      **/
     //printpoint(&(addpoint(&p1, &p2)));
 
-/*
     //Test creating a rect (using intializer list)
     struct rect r1 = { p1, p2 };
 
     //Print rect
-    printrect(r1);
+    printrect(&r1);
 
-    printf("Is (0,0) in r1? | %d\n", ptinrect(makepoint(0, 0), r1));
-    printf("Is (15,50) in r1? | %d\n", ptinrect(makepoint(15, 50), r1));
-    printf("Is (50,50) in r1? | %d\n", ptinrect(makepoint(50, 50), r1));
-*/}
+    struct point testp1 = makepoint(0, 0), testp2 = makepoint(15, 50), testp3 = makepoint(50, 50);
+    printf("Is (0,0) in r1? | %d\n", ptinrect(&testp1, &r1));
+    printf("Is (15,50) in r1? | %d\n", ptinrect(&testp2, &r1));
+    printf("Is (50,50) in r1? | %d\n", ptinrect(&testp3, &r1));
+}
