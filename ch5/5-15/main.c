@@ -34,12 +34,12 @@ int main(int argc, char* argv[]) {
         //This is arguably the least intrusive solution; pre-fold
         //the strings before comparing, instead of re-implementing each
         //cmp function to account for treating uppercase/lowercase similarly
-        if(fold) {
+/*        if(fold) {
             for(int i = 0; i < nlines; ++i) {
                 toLowerStr(lineptr[i]);
             }
         }
-
+*/
         q_sort((void**) lineptr, 0, nlines - 1, 
                 (int (*)(void*, void*))(numeric ? numcmp : str_cmp));
         //This is a lazy solution; reverse after the sort has happened
