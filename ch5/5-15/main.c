@@ -1,7 +1,5 @@
 #include <stdio.h>
 #include <string.h>
-#include <ctype.h>
-#include "lines.h"
 #include "sort.h"
 
 #define MAXLINES 5000
@@ -31,17 +29,8 @@ int main(int argc, char* argv[]) {
     }
 
     if((nlines = readlines(lineptr, MAXLINES)) >= 0) {
-        //This is arguably the least intrusive solution; pre-fold
-        //the strings before comparing, instead of re-implementing each
-        //cmp function to account for treating uppercase/lowercase similarly
-/*        if(fold) {
-            for(int i = 0; i < nlines; ++i) {
-                toLowerStr(lineptr[i]);
-            }
-        }
-*/
         q_sort((void**) lineptr, 0, nlines - 1, 
-                (int (*)(void*, void*))(numeric ? numcmp : str_cmp));
+                (int (*)(void*, void*))(numeric ? numcmp : str_cmp), fold);
         //This is a lazy solution; reverse after the sort has happened
         if(reverse) {
             for(int i = 0; i < nlines/2; ++i) {
@@ -53,12 +42,5 @@ int main(int argc, char* argv[]) {
     } else {
         printf("input too big to sort\n");
         return 1;
-    }
-}
-
-void toLowerStr(char* s) {
-    while(*s) {
-        *s = tolower(*s);
-        ++s;
     }
 }

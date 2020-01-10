@@ -4,7 +4,7 @@
 
 // qsort: sort v[left]...v[right] into increasing order
 void q_sort(void* v[], int left, int right,
-           int (*comp)(void*, void*)) {
+           int (*comp)(void*, void*), int fold) {
 
     int i, last;
     //If arr contains less than two elements, return
@@ -16,14 +16,21 @@ void q_sort(void* v[], int left, int right,
     last = left;
     //Partition
     for (i = left + 1; i <= right; ++i) {
-        if((*comp)(v[i], v[left]) < 0) {
-            swap(v, ++last, i);
+        //If we're folding, compare the lowercase version
+        if(fold) {
+            if((*comp)(tolower(v[i]), tolower(v[left])) < 0) {
+                swap(v, ++last, i);
+            }
+        } else {
+            if((*comp)(v[i], v[left]) < 0) {
+                swap(v, ++last, i);
+            }
         }
     }
     //Restore partition element
     swap(v, left, last);
-    q_sort(v, left, last - 1, comp);
-    q_sort(v, last + 1, right, comp);
+    q_sort(v, left, last - 1, comp, fold);
+    q_sort(v, last + 1, right, comp, fold);
 }
 
 void swap(void* v[], int i, int j) {
