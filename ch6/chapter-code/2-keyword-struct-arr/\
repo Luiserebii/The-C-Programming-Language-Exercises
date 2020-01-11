@@ -1,7 +1,0 @@
-#ifndef KEYTAB_H
-#define KEYTAB_H
-
-extern struct key keytab[];
-extern size_t keytab_size;
-
-#endif
