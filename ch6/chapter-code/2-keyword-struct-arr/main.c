@@ -34,7 +34,8 @@ int binsearch(char* word, struct key tab[], int n);
 int main() {
     int n;
     char word[MAXWORD];
-
+    //Grab each word, if found within keytab, use location found
+    //to advance count
     while(getword(word, MAXWORD) != EOF) {
         if(isalpha(word[0])) {
             if((n = binsearch(word, keytab, NKEYS)) >= 0) {
@@ -42,7 +43,7 @@ int main() {
             }
         }
     }
-
+    //Iterate through each key, if we have at least one found, print
     for(n = 0; n < NKEYS; ++n) {
         if(keytab[n].count > 0) {
             printf("%4d %s\n", keytab[n].count, keytab[n].word);
@@ -81,15 +82,20 @@ int getword(char* word, int lim) {
     while(isspace(c = getch()))
         ;
 
+    //If not EOF, paste in and advance
     if(c != EOF) {
         *w++ = c;
     }
 
+    //If non-alpha char, close string and return char val
     if(!isalpha(c)) {
         *w = '\0';
         return c;
     }
 
+    //Until the limit, read into our char*; in the case
+    //of a non-alpha, ungetch and break, leaving *w as
+    //the piece to close
     for(; --lim > 0; ++w) {
         if(!isalnum(*w = getch())) {
             ungetch(*w);
@@ -97,5 +103,6 @@ int getword(char* word, int lim) {
         }
     }
     *w = '\0';
+    //Return first char val
     return word[0];
 }
