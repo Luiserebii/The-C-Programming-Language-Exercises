@@ -3,22 +3,20 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define MAXWORD 100
+#include "word.h"
 
 struct tnode {
     char* word;
     int count;
     struct tnode* left;
     struct tnode* right;
-}
+};
 
 struct tnode* addtree(struct tnode* p, char* w);
 void treeprint(struct tnode* p);
 
 struct tnode* talloc();
-char* strdup(char* s);
-
-int getword(char*, int);
+char* str_dup(char* s);
 
 /* Word Frequency count using binary tree */
 int main() {
@@ -37,12 +35,12 @@ int main() {
 }
 
 /* addtree:   add a node with w, at or below p */
-struct tnode* addnode(struct tnode* p, char* w) {
+struct tnode* addtree(struct tnode* p, char* w) {
     int cond;
     //If null, then new word has arrived to set
     if(p == NULL) {
         p = talloc(); //Allocate a new node
-        p->word = strdup(w); //Duplicate the word, set newly allocated string pointer
+        p->word = str_dup(w); //Duplicate the word, set newly allocated string pointer
         p->count = 1;
         p->left = p->right = NULL;
     } else if((cond = strcmp(w, p->word)) == 0) {
@@ -72,8 +70,8 @@ struct tnode* talloc() {
     return (struct tnode*) malloc(sizeof(struct tnode));
 }
 
-/* strdup:   create a dynamically-allocated string duplicate of s */
-char* strdup(char* s) {
+/* str_dup:   create a dynamically-allocated string duplicate of s */
+char* str_dup(char* s) {
     char* p;
     //malloc for our string; +1 to account for '\0'
     p = (char*) malloc(strlen(s) + 1);
