@@ -5,20 +5,6 @@
 #include "keyword.h"
 #include "getch.h"
 
-struct key keytab[] = {
-    "auto", 0,
-    "break", 0,
-    "case", 0,
-    "char", 0,
-    "const", 0,
-    "continue", 0,
-    "default", 0,
-    "unsigned", 0,
-    "void", 0,
-    "volatile", 0,
-    "while", 0
-};
-
 // binsearch:   find word in tab[0]...tab[n-1]
 int binsearch(char* word, struct key tab[], int n) {
     int cond;
