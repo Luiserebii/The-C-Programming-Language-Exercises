@@ -3,9 +3,18 @@
 #include <string.h>
 
 #define MAXWORD 100
+#define NKEYS (sizeof keytab / sizeof keytab[0])
+
+struct key {
+    char* word;
+    int count;
+};
+
+struct key keytab[NKEYS];
 
 int getword(char* word, int lim);
 int binsearch(char* word, struct key tab[], int n);
+
 
 /* Count C keywords */
 int main() {
