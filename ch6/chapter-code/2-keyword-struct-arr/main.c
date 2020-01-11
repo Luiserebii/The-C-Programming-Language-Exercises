@@ -2,6 +2,8 @@
 #include <ctype.h>
 #include <string.h>
 
+#include "getch.h"
+
 #define MAXWORD 100
 #define NKEYS (sizeof keytab / sizeof keytab[0])
 
