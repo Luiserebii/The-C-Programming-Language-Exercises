@@ -6,7 +6,8 @@
 #define MAX_VARNAMES 1000
 #define MAX_VARLEN 100
 
-char** processCode(char** varnames);
+char** processCode(char* varnames[]);
+int isType(char* s);
 
 int main(int argc, char** argv) {
     
@@ -38,6 +39,11 @@ int main(int argc, char** argv) {
 
     //Process input
     char** last = processCode(varnames);
+
+    //Print all varnames found
+    for(char** c = varnames; c != last; ++c) {
+        printf("%s\n", *c);
+    }
 }
 
 char** processCode(char* varnames[]) {
