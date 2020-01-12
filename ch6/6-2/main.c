@@ -6,6 +6,8 @@
 #define MAX_VARNAMES 1000
 #define MAX_VARLEN 100
 
+char** processCode(char** varnames);
+
 int main(int argc, char** argv) {
     
     //Options
@@ -38,9 +40,10 @@ int main(int argc, char** argv) {
     char** last = processCode(varnames);
 }
 
-char** processCode(char** varnames) {
+char** processCode(char* varnames[]) {
     int inComment = 0;
     int inString = 0;
+    char c;
     //Read until end of file
     while((c = getchar()) != EOF) {
         switch(c) {
@@ -63,7 +66,7 @@ char** processCode(char** varnames) {
                 //Toggle inString
                 inString = inString ? 0 : 1;
                 break;
-            case ' ':
+            case ' ': {
                 //Ahhh, darn, do we grab a word here? I guess...
                 char buffer[1000];
                 char* b = buffer;
@@ -71,7 +74,7 @@ char** processCode(char** varnames) {
                     ;
                 if(*b == EOF) {
                     //Just break here if we get EOF
-                    return 1;
+                    return varnames;
                 }
                 //Close our buffered string
                 *b = '\0';
@@ -85,7 +88,7 @@ char** processCode(char** varnames) {
                         ;
                     if(*b == EOF) {
                         //Just break here if we get EOF
-                        return 1;
+                        return varnames;
                     }
                     *b = '\0';
                     
@@ -98,6 +101,7 @@ char** processCode(char** varnames) {
 
                 }
                 break;
+            }
         }
     }
     return varnames;
