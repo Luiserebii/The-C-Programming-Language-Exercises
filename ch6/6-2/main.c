@@ -61,7 +61,21 @@ int processCode(char** varnames) {
                 //Toggle inString
                 inString = inString ? 0 : 1;
                 break;
-        
+            case ' ':
+                //Ahhh, darn, do we grab a word here? I guess...
+                char buffer[1000];
+                char* b = buffer;
+                while((*b = getchar()) != ' ' && b != EOF && ++b)
+                    ;
+                if(*b == EOF) {
+                    //Just break here if we get EOF
+                    return 1;
+                }
+                //Close our buffered string
+                *b = '\0';
+
+                //Now see if it is a type; for simplicity, we will be limiting the range to int, float, double, char
+
         
         }
     }
