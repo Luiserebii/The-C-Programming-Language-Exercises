@@ -84,10 +84,10 @@ char** processCode(char* varnames[]) {
                 }
                 //Close our buffered string
                 *b = '\0';
-
+                //   printf("This is our first grab: |%s|\n", buffer);
                 //Now see if it is a type; for simplicity, we will be 
                 //limiting the range to int, float, double, char
-                if(isType(b)) {
+                if(isType(buffer)) {
                     //NOTE: We are reusing our buffer here for the name
                     b = buffer;
                     while((*b = getchar()) != ' ' && (isalpha(*b) || *b == '_') && *b != EOF && ++b)
@@ -97,7 +97,7 @@ char** processCode(char* varnames[]) {
                         return varnames;
                     }
                     *b = '\0';
-                    
+                    //   printf("This is our second grab: |%s|\n", buffer); 
                     //Finally, ensure that the thing is not a function call
                     char* finalChar = b - 1;
                     if(*finalChar != '(') {
@@ -114,6 +114,6 @@ char** processCode(char* varnames[]) {
 }
 
 int isType(char* s) {
-    return strcmp(s, "int") == 0 || strcmp(s, "float"),
+    return strcmp(s, "int") == 0 || strcmp(s, "float") ||
         strcmp(s, "double") == 0 || strcmp(s, "char") == 0;
 }
