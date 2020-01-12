@@ -1,0 +1,15 @@
+-Reads C Program
+  -while(getline)
+     //process
+
+-variable names into array
+-Array of array of pointers for var names which match, maybe?
+
+As in:
+
+["meme", "gog", "aaaaaa", "vov", "aaaaaa"]
+
+//It is assumed that the first n letters are all the same in this group
+[0 ---> [&"aaaaaa", &"aaaaaa"]
+
+//If we take this approach, need to ensure that the memes are unmatched, i.e., while iterating over array of varnames, be certain
