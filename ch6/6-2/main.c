@@ -73,8 +73,11 @@ char** processCode(char* varnames[]) {
                 inString = inString ? 0 : 1;
                 break;
             case ' ': {
+                if(inComment || inString) {
+                    break;
+                }
                 //Ahhh, darn, do we grab a word here? I guess...
-                char buffer[1000];
+                char buffer[10/*00*/];
                 char* b = buffer;
                 //Skip over whitespace
                 while((*b = getchar()) == ' ')
