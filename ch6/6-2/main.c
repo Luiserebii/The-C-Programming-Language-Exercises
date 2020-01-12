@@ -8,6 +8,7 @@
 
 char** processCode(char* varnames[]);
 int isType(char* s);
+void str_cpy(char* s, char* t);
 
 int main(int argc, char** argv) {
     
@@ -110,7 +111,7 @@ char** processCode(char* varnames[]) {
                     char* finalChar = b - 1;
                     if(*finalChar != '(') {
                         //Add the thing
-                        strcpy(*varnames++, buffer);
+                        str_cpy(*varnames++, buffer);
                     }
 
                 }
@@ -124,4 +125,9 @@ char** processCode(char* varnames[]) {
 int isType(char* s) {
     return strcmp(s, "int") == 0 || strcmp(s, "float") ||
         strcmp(s, "double") == 0 || strcmp(s, "char") == 0;
+}
+
+void str_cpy(char* s, char* t) {
+    while(*s++ = *t++)
+        ;
 }
