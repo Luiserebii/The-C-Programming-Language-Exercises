@@ -12,6 +12,12 @@ struct nlist {
 
 static struct nlist* hashtab[HASHSIZE]; /* pointer table */
 
+int main() {
+
+
+
+}
+
 /* hash:   form hash value for string s */
 unsigned hash(char* s) {
     unsigned hashval;
