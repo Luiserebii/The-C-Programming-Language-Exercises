@@ -8,8 +8,8 @@ A collection of exercises I am completing to study C from the book: "The C Progr
 | **Ch. 2:** Types, Operators, and Expressions | :heavy_check_mark: |
 | **Ch. 3:** Control Flow | :heavy_check_mark: |
 | **Ch. 4:** Functions and Program Structure | :heavy_check_mark: |
-| **Ch. 5:** Pointers and Arrays | |
-| **Ch. 6:** Structures | |
+| **Ch. 5:** Pointers and Arrays | :heavy_check_mark: |
+| **Ch. 6:** Structures | --- |
 | **Ch. 7:** Input and Output | |
 | **Ch. 8:** The UNIX System Interface | |
 
