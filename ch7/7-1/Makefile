@@ -1,2 +1,2 @@
 all:
-	cc main.c -o upper && cc main.c -o lower && cc main.c -o something
+	cc -g main.c -o upper && cc -g main.c -o lower && cc -g main.c -o something
