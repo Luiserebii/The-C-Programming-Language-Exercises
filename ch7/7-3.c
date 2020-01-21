@@ -4,10 +4,10 @@
 #define MAXFORMAT 50
 
 void minprintf(char* fmt, ...);
+int isOption(int c);
 
 int main() {
-//    minprintf("%d OwO %s UwU %f\n", 10, "huh", 290.19);
-    minprintf("%10s\n", 10, "huh", 290.19);
+    minprintf("%.10s\n", "hello, world");
 }
 
 /* minprintf:  minimal printf with variable argument list */
@@ -20,7 +20,7 @@ void minprintf(char* fmt, ...) {
     double dval;
 
     char options[MAXFORMAT];
-    char* optionsptr;
+    char* optionsptr = options;
 
     va_start(ap, fmt); /* make ap point to 1st unnamed argument */
     //Iterate through chars in formatted string param
@@ -30,7 +30,14 @@ void minprintf(char* fmt, ...) {
             putchar(*p);
             continue;
         }
-        switch(*++p) {
+        //Iterate over for potential options
+        for(++p; !isOption(*p); ++p) {
+            //Add char to options buffer
+            *optionsptr++ = *p;
+            printf("Adding %c to buffer\n", *p);
+        }
+        //Switch between the options and print!
+        switch(*p) {
             case 'd':
                 ival = va_arg(ap, int); //Obtain current argument based on type, and increment to next pointer
                 printf("%d", ival);
@@ -40,11 +47,12 @@ void minprintf(char* fmt, ...) {
                 printf("%f", dval);
                 break;
             case 's':
+                printf("WE'RE HERE???");
                 for(sval = va_arg(ap, char*); *sval; ++sval) {
                     putchar(*sval);
                 }
                 //Print options (as test)
-                printf("| OPTIONS: %s |\n", options);
+                printf("| OPTIONS: %s |", options);
                 //Clear options buffer
                 *options = '\0';
                 optionsptr = options;
@@ -53,11 +61,11 @@ void minprintf(char* fmt, ...) {
                 ival = va_arg(ap, int);
                 putchar(ival);
                 break;
-            default:
-                //Add char to options buffer
-                *optionsptr++ = *p;
-                break;
         }
     }
     va_end(ap); /* cleanup when done */
+}
+
+int isOption(int c) {
+    return c == 'd' || c == 'f' || c == 's' || c == 'c';
 }
