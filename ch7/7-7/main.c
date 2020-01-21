@@ -39,7 +39,7 @@ int main(int argc, char* argv[]) {
     if(argc == 0) {
         printf("Usage: find -x -n pattern\n");
     } else if(argc == 1){
-        found += processFind(stdout, *argv, MAXLINE, number, except);
+        found += processFind(stdin, *argv, MAXLINE, number, except);
     } else {
         //Multiple files, so let's parse for them
         char files[MAXFILES][MAXFILENAME];
@@ -50,6 +50,16 @@ int main(int argc, char* argv[]) {
         }
         //Finally, grab the patten
         char* pattern = *argv;
+
+        //Iterate through each file found
+        for(char** i = files; i != fileptr; ++i) {
+            //Open file stream
+            FILE* f = fopen(*i, "r");
+            //Process
+            found += processFind(f, pattern, MAXLINE, number, except);
+            //Close file stream
+            fclose(f);
+        }
     }
     return found;
 }
