@@ -44,7 +44,7 @@ int main(int argc, char* argv[]) {
         //Multiple files, so let's parse for them
         char files[MAXFILES][MAXFILENAME];
         char** fileptr = files;
-        while(--argc > 1) {
+        for(; argc > 1; --argc) {
             //Set names into files
             *fileptr++ = *argv++;
         }
