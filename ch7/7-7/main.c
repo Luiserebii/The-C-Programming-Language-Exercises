@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <string.h>
 #define MAXLINE 1000
+#define MAXFILES 100
+#define MAXFILENAME 1000
 
-void processFind(FILE* stream, char* pattern, int limit, int number);
-int getLine(char s[], int lim);
+int processFind(FILE* stream, char* pattern, int limit, int number, int except);
+int getLine(FILE* stream, char line[], int lim);
 
 int main(int argc, char* argv[]) {
 
@@ -37,15 +39,23 @@ int main(int argc, char* argv[]) {
     if(argc == 0) {
         printf("Usage: find -x -n pattern\n");
     } else if(argc == 1){
-        processFind(stdout, *argv, MAXLINE, number);
+        found += processFind(stdout, *argv, MAXLINE, number, except);
     } else {
-        
+        //Multiple files, so let's parse for them
+        char files[MAXFILES][MAXFILENAME];
+        char** fileptr = files;
+        while(--argc > 1) {
+            //Set names into files
+            *fileptr++ = *argv++;
+        }
+        //Finally, grab the patten
+        char* pattern = *argv;
     }
     return found;
 }
 
-void processFind(FILE* stream, char* pattern, int limit, int number) {
-    long lineno = 0;
+int processFind(FILE* stream, char* pattern, int limit, int number, int except) {
+    long lineno = 0, found = 0;
     char line[MAXLINE];
     while(getLine(stream, line, limit) > 0) {
         ++lineno;
@@ -59,8 +69,9 @@ void processFind(FILE* stream, char* pattern, int limit, int number) {
             ++found;
         }
     }
+    return found;
 }
 
-int getLine(FILE* stream, char s[], int lim) {
+int getLine(FILE* stream, char line[], int lim) {
     return (fgets(line, lim, stream) == NULL) ? 0 : strlen(line);
 }
