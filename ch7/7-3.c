@@ -83,7 +83,7 @@ void minprintf(char* fmt, ...) {
                 break;
         }
 
-        //Clear options bugger
+        //Clear options buffer
         *options = '\0';
         optionsptr = options;
     }
