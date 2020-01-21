@@ -14,9 +14,9 @@ int main() {
     int amt = minscanf("%d %s %d", &day, monthname, &year);
     if(amt == 3) {
         printf("Successfully minscanf'd!\n");
-        printf("Day: %d\nMonth:%s\nYear:%d\n", day, monthname, year);
+        printf("Day: %d\nMonth: %s\nYear: %d\n", day, monthname, year);
     } else {
-        fprintf(stderr, "minscanf | Error: Arguments passed are incorrect, only successfully scanned %d args. Please try again.", amt);
+        fprintf(stderr, "minscanf | Error: Arguments passed are incorrect, only successfully scanned %d args. Please try again.\n", amt);
     }
 }
 
@@ -42,7 +42,7 @@ int minscanf(char* fmt, ...) {
     for(p = fmt; *p; ++p) {
         //If it's not a conv. specification, print and skip to next
         if(*p != '%') {
-            putchar(*p);
+            //putchar(*p);
             continue;
         }
         //Iterate over for potential options
@@ -80,7 +80,7 @@ int minscanf(char* fmt, ...) {
                 }
                 strcat(fmtstr, "s");
                 sptr = va_arg(ap, char**);
-                printf("Using this format string: %s\n", fmtstr);
+                //printf("Using this format string: %s\n", fmtstr);
                 numscanned += scanf(fmtstr, sptr);
                 break;
             case 'c':
