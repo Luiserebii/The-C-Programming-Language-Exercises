@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdarg.h>
+#include <string.h>
 
 #define MAXFORMAT 50
 
@@ -36,43 +37,47 @@ void minprintf(char* fmt, ...) {
         for(++p; !isOption(*p); ++p) {
             //Add char to options buffer
             *optionsptr++ = *p;
-            printf("Adding %c to buffer\n", *p);
         }
         //Switch between the options and print!
         switch(*p) {
             case 'd':
-                fmtstr = "%d";
+                strcpy(fmtstr, "%");
                 //Add options, if there are any
                 if(*options) {
                     strcat(fmtstr, options);
                 }
+                strcat(fmtstr, "d");
                 ival = va_arg(ap, int);
                 printf(fmtstr, ival);                
                 break;
             case 'f':
-                fmtstr = "%f";
+                strcpy(fmtstr, "%");
                 //Add options, if there are any
                 if(*options) {
                     strcat(fmtstr, options);
                 }
+                strcat(fmtstr, "f");
                 dval = va_arg(ap, double);
                 printf("%f", dval);
                 break;
             case 's':
-                fmtstr = "%s";
+                strcpy(fmtstr, "%");
                 //Add options, if there are any
                 if(*options) {
                     strcat(fmtstr, options);
                 }
+                strcat(fmtstr, "s");
                 sval = va_arg(ap, char*);
+                printf("Using this format string: %s\n", fmtstr);
                 printf(fmtstr, sval);
                 break;
             case 'c':
-                fmtstr = "%c";
+                strcpy(fmtstr, "%");
                 //Add options, if there are any
                 if(*options) {
                     strcat(fmtstr, options);
                 }
+                strcat(fmtstr, "c");
                 ival = va_arg(ap, int);
                 printf(fmtstr, ival);
                 break;
