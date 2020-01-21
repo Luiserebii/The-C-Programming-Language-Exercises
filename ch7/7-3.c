@@ -22,6 +22,8 @@ void minprintf(char* fmt, ...) {
     char options[MAXFORMAT];
     char* optionsptr = options;
 
+    char fmtstr[MAXFORMAT];
+
     va_start(ap, fmt); /* make ap point to 1st unnamed argument */
     //Iterate through chars in formatted string param
     for(p = fmt; *p; ++p) {
@@ -39,29 +41,46 @@ void minprintf(char* fmt, ...) {
         //Switch between the options and print!
         switch(*p) {
             case 'd':
-                ival = va_arg(ap, int); //Obtain current argument based on type, and increment to next pointer
-                printf("%d", ival);
+                fmtstr = "%d";
+                //Add options, if there are any
+                if(*options) {
+                    strcat(fmtstr, options);
+                }
+                ival = va_arg(ap, int);
+                printf(fmtstr, ival);                
                 break;
             case 'f':
+                fmtstr = "%f";
+                //Add options, if there are any
+                if(*options) {
+                    strcat(fmtstr, options);
+                }
                 dval = va_arg(ap, double);
                 printf("%f", dval);
                 break;
             case 's':
-                printf("WE'RE HERE???");
-                for(sval = va_arg(ap, char*); *sval; ++sval) {
-                    putchar(*sval);
+                fmtstr = "%s";
+                //Add options, if there are any
+                if(*options) {
+                    strcat(fmtstr, options);
                 }
-                //Print options (as test)
-                printf("| OPTIONS: %s |", options);
-                //Clear options buffer
-                *options = '\0';
-                optionsptr = options;
+                sval = va_arg(ap, char*);
+                printf(fmtstr, sval);
                 break;
             case 'c':
+                fmtstr = "%c";
+                //Add options, if there are any
+                if(*options) {
+                    strcat(fmtstr, options);
+                }
                 ival = va_arg(ap, int);
-                putchar(ival);
+                printf(fmtstr, ival);
                 break;
         }
+
+        //Clear options bugger
+        *options = '\0';
+        optionsptr = options;
     }
     va_end(ap); /* cleanup when done */
 }
