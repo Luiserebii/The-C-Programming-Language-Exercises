@@ -8,6 +8,8 @@ int numDigits(int n, int base);
 /* Defining as macro for efficiency */
 #define numOctalDigits(n) numDigits(n, 8)
 
+enum printCharMode { NORMAL, OCTAL };
+
 int main() {
 
     int c;
@@ -34,6 +36,17 @@ int main() {
             ++numprint;
         }
     }
+}
+
+void printChar(int c, enum printCharMode mode) {
+    int digits;
+    switch(mode) {
+        case NORMAL:
+            digits = 1;
+        case OCTAL:
+            digits = numOctalDigits(c);
+    }
+
 }
 
 int numDigits(int n, int base) {
