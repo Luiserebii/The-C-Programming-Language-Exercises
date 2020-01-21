@@ -11,7 +11,7 @@ int main() {
     int day, year;
     char monthname[20];
 
-    int amt = minscanf("%d %s %d", &day, monthname, %year);
+    int amt = minscanf("%d %s %d", &day, monthname, &year);
     if(amt == 3) {
         printf("Successfully minscanf'd!\n");
         printf("Day: %d\nMonth:%s\nYear:%d\n", day, monthname, year);
@@ -25,9 +25,10 @@ void minscanf(char* fmt, ...) {
 
     va_list ap; //Declare argument pointer
     char* p;
-    char* sval;
-    int ival;
-    double dval;
+
+    int* iptr;
+    double* dptr;
+    char** sval;
 
     char options[MAXFORMAT];
     char* optionsptr = options;
@@ -56,8 +57,8 @@ void minscanf(char* fmt, ...) {
                     strcat(fmtstr, options);
                 }
                 strcat(fmtstr, "d");
-                ival = va_arg(ap, int);
-                printf(fmtstr, ival);                
+                iptr = va_arg(ap, int*);
+                scanf(fmtstr, ival);                
                 break;
             case 'f':
                 strcpy(fmtstr, "%");
@@ -66,8 +67,8 @@ void minscanf(char* fmt, ...) {
                     strcat(fmtstr, options);
                 }
                 strcat(fmtstr, "f");
-                dval = va_arg(ap, double);
-                printf("%f", dval);
+                dptr = va_arg(ap, double*);
+                scanf("%f", dval);
                 break;
             case 's':
                 strcpy(fmtstr, "%");
@@ -76,9 +77,9 @@ void minscanf(char* fmt, ...) {
                     strcat(fmtstr, options);
                 }
                 strcat(fmtstr, "s");
-                sval = va_arg(ap, char*);
+                sptr = va_arg(ap, char**);
                 printf("Using this format string: %s\n", fmtstr);
-                printf(fmtstr, sval);
+                scanf(fmtstr, sval);
                 break;
             case 'c':
                 strcpy(fmtstr, "%");
@@ -87,8 +88,8 @@ void minscanf(char* fmt, ...) {
                     strcat(fmtstr, options);
                 }
                 strcat(fmtstr, "c");
-                ival = va_arg(ap, int);
-                printf(fmtstr, ival);
+                iptr = va_arg(ap, int*);
+                scanf(fmtstr, ival);
                 break;
         }
 
