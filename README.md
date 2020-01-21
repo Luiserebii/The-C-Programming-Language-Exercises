@@ -10,6 +10,6 @@ A collection of exercises I am completing to study C from the book: "The C Progr
 | **Ch. 4:** Functions and Program Structure | :heavy_check_mark: |
 | **Ch. 5:** Pointers and Arrays | :heavy_check_mark: |
 | **Ch. 6:** Structures | --- |
-| **Ch. 7:** Input and Output | |
+| **Ch. 7:** Input and Output | :heavy_check_mark: |
 | **Ch. 8:** The UNIX System Interface | |
 
