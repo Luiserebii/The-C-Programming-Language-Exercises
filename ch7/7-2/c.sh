@@ -1,2 +1,2 @@
 #!/bin/bash
-cc main.c && ./a.out
+make && ./a.out
