@@ -1,4 +1,7 @@
 #include <stdio.h>
+#include <string.h>
+
+#define MAXREAD 1000
 
 int main(int argc, char** argv) {
     
@@ -10,6 +13,22 @@ int main(int argc, char** argv) {
     char* fn1 = argv[1];
     char* fn2 = argv[2];
 
-    printf("Filename1: %s, Filename2: %s\n", fn1, fn2);
+    //Open files
+    FILE* file1 = fopen(fn1, "r");
+    FILE* file2 = fopen(fn2, "r");
+
+    //Compare each line
+    char line1[MAXREAD];
+    char line2[MAXREAD];
+    while(fgets(line1, MAXREAD, file1) && fgets(line2, MAXREAD, file2)) {
+        if(strcmp(line1, line2) != 0) {
+            printf("First line in which files \"%s\" and \"%s\" differ found:\n", fn1, fn2);
+            printf("\n=-=-=\n%s\n=-=-=\n%s", fn1, line1);
+            printf("\n=-=-=\n%s\n=-=-=\n%s", fn2, line2);
+            return 0;
+        }
+    }
+    //If we reached here, nothing found, so
+    printf("Files \"%s\" and \"%s\" are equal, no differences found.\n", fn1, fn2);
 
 }
