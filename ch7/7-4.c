@@ -42,7 +42,7 @@ int minscanf(char* fmt, ...) {
     for(p = fmt; *p; ++p) {
         //If it's not a conv. specification, print and skip to next
         if(*p != '%') {
-            //putchar(*p);
+            getchar();
             continue;
         }
         //Iterate over for potential options

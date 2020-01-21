@@ -18,6 +18,7 @@ int main(int argc, char** argv) {
     FILE* file2 = fopen(fn2, "r");
 
     //Compare each line
+    int found = 0;
     char line1[MAXREAD];
     char line2[MAXREAD];
     while(fgets(line1, MAXREAD, file1) && fgets(line2, MAXREAD, file2)) {
@@ -25,10 +26,18 @@ int main(int argc, char** argv) {
             printf("First line in which files \"%s\" and \"%s\" differ found:\n", fn1, fn2);
             printf("\n=-=-=\n%s\n=-=-=\n%s", fn1, line1);
             printf("\n=-=-=\n%s\n=-=-=\n%s", fn2, line2);
-            return 0;
+            found = 1;
         }
     }
-    //If we reached here, nothing found, so
-    printf("Files \"%s\" and \"%s\" are equal, no differences found.\n", fn1, fn2);
+    //Print equal if equal
+    if(!found) {
+        printf("Files \"%s\" and \"%s\" are equal, no differences found.\n", fn1, fn2);
+    }
 
+    //Release resources
+    fclose(file1);
+    fclose(file2);
+
+    return 0;
 }
+
