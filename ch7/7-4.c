@@ -4,7 +4,7 @@
 
 #define MAXFORMAT 50
 
-void minscanf(char* fmt, ...);
+int minscanf(char* fmt, ...);
 int isOption(int c);
 
 int main() {
@@ -21,19 +21,21 @@ int main() {
 }
 
 /* minscanf:  minimal scanf with variable argument list */
-void minscanf(char* fmt, ...) {
+int minscanf(char* fmt, ...) {
 
     va_list ap; //Declare argument pointer
     char* p;
 
     int* iptr;
     double* dptr;
-    char** sval;
+    char** sptr;
 
     char options[MAXFORMAT];
     char* optionsptr = options;
 
     char fmtstr[MAXFORMAT];
+
+    int numscanned = 0;
 
     va_start(ap, fmt); /* make ap point to 1st unnamed argument */
     //Iterate through chars in formatted string param
@@ -58,7 +60,7 @@ void minscanf(char* fmt, ...) {
                 }
                 strcat(fmtstr, "d");
                 iptr = va_arg(ap, int*);
-                scanf(fmtstr, ival);                
+                numscanned += scanf(fmtstr, iptr);
                 break;
             case 'f':
                 strcpy(fmtstr, "%");
@@ -68,7 +70,7 @@ void minscanf(char* fmt, ...) {
                 }
                 strcat(fmtstr, "f");
                 dptr = va_arg(ap, double*);
-                scanf("%f", dval);
+                numscanned += scanf("%lf", dptr);
                 break;
             case 's':
                 strcpy(fmtstr, "%");
@@ -79,7 +81,7 @@ void minscanf(char* fmt, ...) {
                 strcat(fmtstr, "s");
                 sptr = va_arg(ap, char**);
                 printf("Using this format string: %s\n", fmtstr);
-                scanf(fmtstr, sval);
+                numscanned += scanf(fmtstr, sptr);
                 break;
             case 'c':
                 strcpy(fmtstr, "%");
@@ -89,7 +91,7 @@ void minscanf(char* fmt, ...) {
                 }
                 strcat(fmtstr, "c");
                 iptr = va_arg(ap, int*);
-                scanf(fmtstr, ival);
+                numscanned += scanf(fmtstr, iptr);
                 break;
         }
 
@@ -98,6 +100,7 @@ void minscanf(char* fmt, ...) {
         optionsptr = options;
     }
     va_end(ap); /* cleanup when done */
+    return numscanned;
 }
 
 int isOption(int c) {
